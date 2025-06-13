@@ -1459,6 +1459,7 @@ html {
     font-size: 15px;
     border: 1px solid #e0e0e0;
 }
+
 .music-player button {
     background: #000;
     color: #fff;
@@ -1466,18 +1467,21 @@ html {
     border-radius: 50%;
     width: 36px;
     height: 36px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.2s, box-shadow 0.2s;
     box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    padding: 0;
 }
+
 .music-player button:hover {
     background: #222;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
+
 .music-player .song-title {
     flex: 1;
     margin-left: 10px;
@@ -1487,25 +1491,66 @@ html {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .music-player input[type=range] {
     width: 80px;
     accent-color: #000;
     margin-left: 10px;
 }
+
+.submit-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+}
+
+.submit-btn:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
 @media (max-width: 600px) {
     .music-player {
         max-width: 98vw;
         font-size: 14px;
-        padding: 8px 8px;
+        padding: 10px 16px;
         gap: 8px;
     }
+    
+    .music-player button {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
     .music-player .song-title {
-        margin-left: 6px;
+        margin-left: 8px;
         font-size: 13px;
     }
+    
     .music-player input[type=range] {
         width: 60px;
         margin-left: 6px;
+    }
+
+    .submit-btn {
+        padding: 10px 20px;
+        font-size: 15px;
+        min-width: 100px;
     }
 }
 
