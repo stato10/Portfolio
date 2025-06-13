@@ -1338,4 +1338,110 @@ html {
     .stato-image {
         max-width: 320px;
     }
+}
+
+@media (max-width: 600px) {
+    .stato-brand {
+        padding-bottom: 0;
+        margin-bottom: 48px !important;
+        display: block;
+        position: relative;
+        z-index: 1;
+    }
+    .stato-image {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        min-height: 140px;
+    }
+    .stato-image img {
+        display: block;
+        margin: 0 auto;
+        max-height: 160px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .hero {
+        clear: both;
+        display: block;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        position: relative;
+        z-index: 0;
+    }
+    .stato-text {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .stato-description {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    .stato-buttons {
+        margin-top: 10px;
+        gap: 12px;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-details {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px 0;
+        gap: 10px;
+    }
+    .action-buttons {
+        margin-top: 10px;
+        gap: 12px;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .detail-label, .detail-value {
+        font-size: 13px;
+    }
+    .hero {
+        margin-top: 18px;
+    }
+}
+
+@media (max-width: 700px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .stato-brand-flex {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 16px !important;
+    }
+    .stato-image {
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto 0 auto;
+    }
+    .stato-image img {
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border-radius: 14px;
+        object-fit: cover;
+    }
+    .stato-brand {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .hero {
+        margin-top: 32px !important;
+        padding-top: 0 !important;
+        clear: both;
+        position: static;
+        z-index: 0;
+    }
 } 

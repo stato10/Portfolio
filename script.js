@@ -187,15 +187,28 @@ function initSmoothScrolling() {
 
 // Parallax effect for hero section
 function initParallaxEffects() {
+    function clearHeroTransformIfMobile() {
+        const hero = document.querySelector('.hero');
+        if (window.innerWidth <= 600 && hero) {
+            hero.style.transform = '';
+        }
+    }
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
+        // Disable parallax on mobile
+        if (window.innerWidth <= 600) {
+            if (hero) hero.style.transform = '';
+            return;
+        }
         const rate = scrolled * -0.3;
-        
         if (hero) {
             hero.style.transform = `translateY(${rate}px)`;
         }
     });
+    // Also clear on load and resize
+    window.addEventListener('DOMContentLoaded', clearHeroTransformIfMobile);
+    window.addEventListener('resize', clearHeroTransformIfMobile);
 }
 
 // Dynamic skill tag interactions
