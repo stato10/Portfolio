@@ -303,6 +303,9 @@ function initNavigationEffects() {
 
 // Fun cursor trail effect
 function initCursorEffects() {
+    // Only apply cursor effects on screens larger than 768px
+    if (window.innerWidth <= 768) return;
+
     const trail = [];
     const maxTrail = 10;
     
@@ -335,6 +338,13 @@ function initCursorEffects() {
             `;
             document.body.appendChild(dot);
         });
+    });
+
+    // Remove cursor effects when window is resized to mobile size
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('.cursor-trail').forEach(dot => dot.remove());
+        }
     });
 }
 
@@ -599,4 +609,182 @@ document.head.appendChild(rainbowStyle);
             this.classList.add('active');
         });
     });
+})();
+
+// Music Player Controls
+(function() {
+  const audio = document.getElementById('audioPlayer');
+  const playBtn = document.getElementById('playPauseBtn');
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+  const progressBar = document.getElementById('progressBar');
+  const muteBtn = document.getElementById('muteBtn');
+  const muteIcon = document.getElementById('muteIcon');
+  const unmuteIcon = document.getElementById('unmuteIcon');
+  const musicOverlay = document.getElementById('musicOverlay');
+  const musicOverlayBtn = document.getElementById('musicOverlayBtn');
+  if (!audio || !playBtn || !playIcon || !pauseIcon || !progressBar || !muteBtn || !muteIcon || !unmuteIcon || !musicOverlay || !musicOverlayBtn) return;
+
+  // Show overlay on load
+  musicOverlay.style.display = '';
+  document.body.style.overflow = 'hidden';
+
+  // Only play music and hide overlay when overlay button is clicked
+  musicOverlayBtn.addEventListener('click', function() {
+    audio.play().catch(() => {});
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = '';
+    musicOverlay.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+
+  // Update play/pause button state based on audio state
+  function updatePlayPauseButton() {
+    if (audio.paused) {
+      playIcon.style.display = '';
+      pauseIcon.style.display = 'none';
+    } else {
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = '';
+    }
+  }
+
+  // Listen for audio state changes
+  audio.addEventListener('play', updatePlayPauseButton);
+  audio.addEventListener('pause', updatePlayPauseButton);
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
+    }
+  });
+
+  muteBtn.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    muteIcon.style.display = audio.muted ? 'none' : '';
+    unmuteIcon.style.display = audio.muted ? '' : 'none';
+  });
+
+  audio.addEventListener('ended', () => {
+    playIcon.style.display = '';
+    pauseIcon.style.display = 'none';
+    progressBar.value = 0;
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration) {
+      progressBar.value = (audio.currentTime / audio.duration) * 100;
+    }
+  });
+
+  progressBar.addEventListener('input', () => {
+    if (audio.duration) {
+      audio.currentTime = (progressBar.value / 100) * audio.duration;
+    }
+  });
+})();
+
+// Fix navbar showing in the middle of the section on first load
+window.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('.header');
+  if (header) {
+    header.classList.remove('header-hidden');
+    header.classList.add('header-visible');
+  }
+});
+
+// Contact Form Functionality
+(function() {
+    const contactModal = document.getElementById('contactModal');
+    const contactForm = document.getElementById('contactForm');
+    const closeModal = document.querySelector('.close-modal');
+    const emailLink = document.querySelector('a[href^="mailto:"]');
+
+    // Initialize EmailJS
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+
+    // Open modal when clicking email link
+    if (emailLink) {
+        emailLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Close modal
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            contactModal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === contactModal) {
+            contactModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Handle form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            // Remove any existing message
+            const existingMessage = contactForm.querySelector('.form-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
+            try {
+                const formData = {
+                    name: contactForm.name.value,
+                    email: contactForm.email.value,
+                    subject: contactForm.subject.value,
+                    message: contactForm.message.value
+                };
+
+                await emailjs.send(
+                    "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+                    "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+                    formData
+                );
+
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'form-message success';
+                successMessage.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+                contactForm.appendChild(successMessage);
+
+                // Reset form
+                contactForm.reset();
+
+                // Close modal after 3 seconds
+                setTimeout(() => {
+                    contactModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 3000);
+
+            } catch (error) {
+                // Show error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'form-message error';
+                errorMessage.textContent = 'Failed to send message. Please try again later.';
+                contactForm.appendChild(errorMessage);
+            } finally {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
 })(); 

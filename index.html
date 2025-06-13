@@ -57,6 +57,19 @@
                 <a href="#work" class="stato-btn primary">View Projects</a>
                 <a href="#about" class="stato-btn secondary">About Me</a>
               </div>
+              <div class="music-player">
+                <button id="playPauseBtn" aria-label="Play/Pause">
+                  <span id="playIcon">▶</span>
+                  <span id="pauseIcon" style="display:none;">⏸</span>
+                </button>
+                <button id="muteBtn" aria-label="Mute/Unmute">
+                  <span id="muteIcon">🔊</span>
+                  <span id="unmuteIcon" style="display:none;">🔇</span>
+                </button>
+                <span class="song-title">Big Pun - Still Not a Player (ft. Joe)</span>
+                <audio id="audioPlayer" src="https://res.cloudinary.com/dpz2lh8hu/video/upload/v1749821121/Big_Pun_-_Still_Not_a_Player_ft._Joe_Lyrics_kyiya5.mp3" autoplay></audio>
+                <input type="range" id="progressBar" value="0" min="0" max="100" step="1" title="Song progress">
+              </div>
             </div>
             <div class="stato-image">
               <img src="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1749816849/20250613_1513_Black_and_White_Coding_remix_01jxmk6tr1e7xajwnya1xzzpsr_zr6hhl.png" alt="Black and White Coding" />
@@ -97,7 +110,7 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <h2 class="section-title">Projects</h2>
-                <div class="section-count">##### 3</div>
+                <div class="section-count"></div>
             </div>
             <div class="projects-grid">
                 <div class="project-card animate-on-scroll" style="--delay: 0.1s">
@@ -143,8 +156,8 @@
                 <img src="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1749741093/WhatsApp_Image_2025-06-12_at_18.07.57_900fb91c_e1xg1c.jpg" alt="Avraham Stato portrait" class="portrait-image" onerror="this.style.display='none'">
             </div>
             <div class="about-text">
-                <p class="about-intro">Hey, after know me as Stato, I'm a full stack developer from Israel. I specialize in Java, JavaScript, Node.js, AI Integration & System Administration. I'm passionate about building scalable solutions with modern technologies and I'm always curious to learn more when it comes to new technologies and creative coding.</p>
-                <p class="about-description">Currently pursuing B.Sc. Software Engineering at Ort Singalovski College with a 90 GPA. I excel at integrating external APIs (OpenAI, GCP, Google Maps) and have a strong background managing IT systems for government projects. Fast learner, excellent problem-solver, and dedicated to building innovative solutions.</p>
+                <p class="about-intro">Hey, now we friends you can call me Stato, I'm a full stack developer from Israel. I specialize in Java, JavaScript, Node.js, AI Integration & System Administration. I'm passionate about building scalable solutions with modern technologies and I'm always curious to learn more when it comes to new technologies and creative coding.</p>
+                <p class="about-description">Software Engineering at Ort Singalovski College with a 90 GPA. I excel at integrating external APIs (OpenAI, GCP, Google Maps) and have a strong background managing IT systems for government projects. Fast learner, excellent problem-solver, and dedicated to building innovative solutions.</p>
                 <div class="resume-download">
                   <a href="https://drive.google.com/file/d/1hQ5X5YGarVHYnatNNdC1t33iP3vQsWR-/view?usp=drive_link" class="resume-link" target="_blank" rel="noopener">↓ Resume</a>
                 </div>
@@ -217,7 +230,7 @@
                     <div class="contact-methods">
                         <a href="mailto:statto@gmail.com" class="contact-link">
                             <span>Email</span>
-                            <span>statto@gmail.com</span>
+                            <span>statto3@gmail.com</span>
                         </a>
                         <a href="tel:+972548872039" class="contact-link">
                             <span>Phone</span>
@@ -250,6 +263,38 @@
         </div>
     </footer>
 
+    <div id="musicOverlay" class="music-overlay">
+      <button id="musicOverlayBtn">▶ Play Music</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
+
+<!-- Contact Form Modal -->
+<div id="contactModal" class="contact-modal">
+    <div class="contact-modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Send me a message</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </div>
+</div> 
