@@ -703,7 +703,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const emailLink = document.querySelector('a[href^="mailto:"]');
 
     // Initialize EmailJS
-    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    emailjs.init("SvUh9nfkU6oYoNIF9"); // Replace with your EmailJS public key
 
     // Open modal when clicking email link
     if (emailLink) {
@@ -755,8 +755,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 };
 
                 await emailjs.send(
-                    "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-                    "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+                    "service_ju5loxj", // Replace with your EmailJS service ID
+                    "template_6zg4au2", // Replace with your EmailJS template ID
                     formData
                 );
 
