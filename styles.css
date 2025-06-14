@@ -1476,6 +1476,7 @@ html {
     box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     padding: 0;
     position: relative;
+    flex-shrink: 0;
 }
 
 .music-player button span {
@@ -1487,6 +1488,8 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .music-player button:hover {
@@ -1738,5 +1741,36 @@ html {
     .form-group input,
     .form-group textarea {
         padding: 0.7rem;
+    }
+}
+
+/* Specific styles for Poco X3 GT and similar 6.6-inch screens */
+@media screen and (min-width: 412px) and (max-width: 428px) {
+    .music-player {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .music-player button {
+        width: 34px;
+        height: 34px;
+    }
+
+    .music-player button span {
+        font-size: 15px;
+    }
+
+    .music-player .song-title {
+        font-size: 14px;
+    }
+
+    .header {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    .header.header-visible {
+        transform: translateY(0);
+        opacity: 1;
     }
 } 
