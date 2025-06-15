@@ -690,15 +690,8 @@ document.head.appendChild(rainbowStyle);
 window.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('.header');
   if (header) {
-    // Start with header hidden
-    header.classList.remove('header-visible');
-    header.classList.add('header-hidden');
-    
-    // Show header after a short delay
-    setTimeout(() => {
-      header.classList.remove('header-hidden');
-      header.classList.add('header-visible');
-    }, 100);
+    header.classList.remove('header-hidden');
+    header.classList.add('header-visible');
   }
 });
 
