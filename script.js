@@ -623,19 +623,30 @@ document.head.appendChild(rainbowStyle);
   const unmuteIcon = document.getElementById('unmuteIcon');
   const musicOverlay = document.getElementById('musicOverlay');
   const musicOverlayBtn = document.getElementById('musicOverlayBtn');
-  if (!audio || !playBtn || !playIcon || !pauseIcon || !progressBar || !muteBtn || !muteIcon || !unmuteIcon || !musicOverlay || !musicOverlayBtn) return;
+  const silentOverlayBtn = document.getElementById('silentOverlayBtn');
+  const musicPlayer = document.querySelector('.music-player');
+
+  if (!audio || !playBtn || !playIcon || !pauseIcon || !progressBar || !muteBtn || !muteIcon || !unmuteIcon || !musicOverlay || !musicOverlayBtn || !silentOverlayBtn) return;
 
   // Show overlay on load
   musicOverlay.style.display = '';
   document.body.style.overflow = 'hidden';
 
-  // Only play music and hide overlay when overlay button is clicked
+  // Handle music option
   musicOverlayBtn.addEventListener('click', function() {
     audio.play().catch(() => {});
     playIcon.style.display = 'none';
     pauseIcon.style.display = '';
     musicOverlay.style.display = 'none';
     document.body.style.overflow = '';
+    musicPlayer.style.display = 'flex';
+  });
+
+  // Handle silent option
+  silentOverlayBtn.addEventListener('click', function() {
+    musicOverlay.style.display = 'none';
+    document.body.style.overflow = '';
+    musicPlayer.style.display = 'none';
   });
 
   // Update play/pause button state based on audio state
