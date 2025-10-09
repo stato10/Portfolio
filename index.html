@@ -2,174 +2,363 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Avraham Stato - Full Stack Developer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Avraham Stato - Full Stack Developer specializing in Java, JavaScript, Node.js, AI Integration & System Administration. Building scalable solutions with modern technologies.">
+    <meta name="keywords" content="Full Stack Developer, Java, JavaScript, Node.js, AI Integration, System Administration, Web Development, Software Engineer">
+    <meta name="author" content="Avraham Stato">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Avraham Stato - Full Stack Developer">
+    <meta property="og:description" content="Full Stack Developer specializing in Java, JavaScript, Node.js, AI Integration & System Administration.">
+    <meta property="og:image" content="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1753432895/a77c4ee3-ec88-421d-ad2b-1cacfc6e612b_eowqiu.png">
+    <meta property="og:url" content="https://avrahamstato.dev">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Avraham Stato - Full Stack Developer">
+    <meta name="twitter:description" content="Full Stack Developer specializing in Java, JavaScript, Node.js, AI Integration & System Administration.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1753432895/a77c4ee3-ec88-421d-ad2b-1cacfc6e612b_eowqiu.png">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Advanced Animation Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
+    
+    <!-- Advanced Effect Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <!-- Top Tagline
-    <div class="top-tagline">
-        Building innovative solutions...
-    </div> -->
-
-    <!-- Main Content -->
-    <div class="main-container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <div class="logo">
-                    <!-- <h5>avraham/stato</h5> -->
-                </div>
-                <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" title="Toggle menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-                <nav class="navigation" id="nav-menu">
-                    <div class="nav-links">
-                        <a href="#home" class="nav-link">Home</a>
-                        <a href="#work" class="nav-link">Projects</a>
-                        <a href="#about" class="nav-link">About</a>
-                        <a href="#skills" class="nav-link">Skills</a>
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </div>
-                </nav>
-                <!-- <div class="language-toggle">
-                    <span>EN</span>
-                </div> -->
+    <!-- Professional Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Avraham Stato</span>
+                <div class="logo-underline"></div>
             </div>
-        </header>
+            <div class="nav-menu" id="nav-menu">
+                <div class="nav-links-container">
+                    <a href="#hero" class="nav-link">
+                        <span class="nav-text">HOME</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                    <a href="#portfolio" class="nav-link">
+                        <span class="nav-text">WORK</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                    <a href="#about" class="nav-link">
+                        <span class="nav-text">ABOUT</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                    <a href="#contact" class="nav-link">
+                        <span class="nav-text">CONTACT</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                </div>
+                </div>
+            <div class="hamburger" id="hamburger" aria-expanded="false" aria-label="Toggle navigation menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+        </div>
+    </nav>
 
-        <!-- Stato Brand Section -->
-        <section class="stato-brand animate-on-scroll">
-          <div class="stato-brand-flex">
-            <div class="stato-text">
-              <span class="stato-prefix">Hey, I'm</span>
-              <h1 class="stato-name">Avraham</h1>
-              <h1 class="stato-surname">Stato</h1>
-              <p class="stato-description">Full stack developer & system administrator specializing in Java, JavaScript, Node.js, AI Integration & System Administration. Building scalable solutions with modern technologies and clean architecture.</p>
-              <div class="social-links" style="margin-bottom: 24px;">
-                <a href="https://github.com/stato10" target="_blank" rel="noopener" aria-label="GitHub"><span aria-hidden="true">↗</span> GitHub</a>
-                <a href="https://linkedin.com/in/avraham-stato" target="_blank" rel="noopener" aria-label="LinkedIn"><span aria-hidden="true">↗</span> LinkedIn</a>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <!-- Professional Video Background -->
+        <div class="hero-video-container">
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/34Y_pnKt4TQ?autoplay=1&mute=1&loop=1&playlist=34Y_pnKt4TQ&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1&start=0&end=0&vq=hd1080&quality=hd1080&hd=1&cc_load_policy=0&disablekb=1&fs=0&hl=en&cc_lang_pref=none"
+                    allow="autoplay; encrypted-media" 
+                    class="hero-video"
+                    width="1920"
+                    height="1080"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <!-- Professional Gradient Layers -->
+        <div class="hero-gradients">
+            <div class="gradient-layer gradient-1"></div>
+            <div class="gradient-layer gradient-2"></div>
+            <div class="gradient-layer gradient-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">AVRAHAM</span>
+                    <span class="title-line">STATO</span>
+                </h1>
+                <p class="hero-subtitle">FULL STACK DEVELOPER</p>
+                <p class="hero-description">Building scalable solutions with modern technologies and clean architecture. Specializing in Java, JavaScript, Node.js, AI Integration & System Administration.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">VIEW WORK</a>
+                    <a href="#contact" class="btn btn-secondary">GET IN TOUCH</a>
+                    <a href="https://github.com/stato10" target="_blank" rel="noopener" class="btn btn-github">GITHUB</a>
+                    <a href="https://linkedin.com/in/avraham-stato" target="_blank" rel="noopener" class="btn btn-linkedin">LINKEDIN</a>
               </div>
-              <div class="stato-buttons">
-                <a href="#work" class="stato-btn primary">View Projects</a>
-                <a href="#about" class="stato-btn secondary">About Me</a>
-              </div>
+
+
+                <!-- Music Player -->
               <div class="music-player">
                 <button id="playPauseBtn" aria-label="Play/Pause">
                   <span id="playIcon">▶</span>
-                  <span id="pauseIcon" style="display:none;">⏸</span>
+                <span id="pauseIcon" class="hidden">⏸</span>
                 </button>
                 <button id="muteBtn" aria-label="Mute/Unmute">
                   <span id="muteIcon">🔊</span>
-                  <span id="unmuteIcon" style="display:none;">🔇</span>
+                        <span id="unmuteIcon" class="hidden">🔇</span>
                 </button>
                 <span class="song-title">Big Pun - Still Not a Player (ft. Joe)</span>
                 <audio id="audioPlayer" src="https://res.cloudinary.com/dpz2lh8hu/video/upload/v1749821121/Big_Pun_-_Still_Not_a_Player_ft._Joe_Lyrics_kyiya5.mp3" autoplay></audio>
                 <input type="range" id="progressBar" value="0" min="0" max="100" step="1" title="Song progress">
               </div>
             </div>
-            <div class="stato-image">
-              <img src="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1753432895/a77c4ee3-ec88-421d-ad2b-1cacfc6e612b_eowqiu.png" alt="Black and White Coding" />
             </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>SCROLL</span>
           </div>
         </section>
 
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-details animate-on-scroll" style="--delay: 0.6s">
-                        <div class="detail-item">
-                            <span class="detail-label">Location</span>
-                            <span class="detail-value">Israel</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Experience</span>
-                            <span class="detail-value">1+ Years</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Education</span>
-                            <span class="detail-value"> Software Engineering & Full Stack Development</span>
-                        </div>
-                    </div>
-                    
-                    <div class="action-buttons animate-on-scroll" style="--delay: 0.8s">
-                        <a href="#work" class="action-btn">View Projects</a>
-                        <a href="#contact" class="action-btn">Get In Touch</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Work Section -->
-    <section id="work" class="work">
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <!-- Advanced Particle Background -->
+        <div id="portfolio-particles" class="portfolio-particles"></div>
+        
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Projects</h2>
-                <div class="section-count"></div>
+            <!-- Simple Projects Headline -->
+            <div class="projects-headline">
+                <h2 class="projects-title">MY PROJECTS</h2>
             </div>
-            <div class="projects-grid">
-                <div class="project-card animate-on-scroll" style="--delay: 0.1s">
-                    <div class="project-image">
-                        <img src="images/playcv-backend.png" alt="Play_CV Backend Project Screenshot" />
-                    </div>
-                    <div class="project-info">
-                        <h3>Play_CV Backend & Frontend Contributor</h3>
-                        <p>Node.js • Express.js • MongoDB • OpenAI API • JWT Authentication</p>
-                        <a href="https://github.com/stato10/Play_cv" class="project-link">View on GitHub →</a>
+            
+            <div class="section-header" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <h2 class="section-title animate__animated animate__fadeInUp">
+                    <span class="title-bg">PROJECTS</span>
+                    <span class="title-front">MY WORK</span>
+                </h2>
+            </div>
+            
+            <!-- Portfolio Filter Buttons -->
+            <div class="portfolio-filters space-x-2" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+                <button class="shadcn-button shadcn-button-primary filter-btn active hvr-pulse-grow" data-filter="all">ALL PROJECTS</button>
+                <button class="shadcn-button shadcn-button-outline filter-btn hvr-pulse-grow" data-filter="fullstack">FULL STACK</button>
+                <button class="shadcn-button shadcn-button-outline filter-btn hvr-pulse-grow" data-filter="ai">AI PROJECTS</button>
+                <button class="shadcn-button shadcn-button-outline filter-btn hvr-pulse-grow" data-filter="web">WEB APPS</button>
+                <button class="shadcn-button shadcn-button-outline filter-btn hvr-pulse-grow" data-filter="backend">BACKEND</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item shadcn-card tilt-card hvr-float-shadow" 
+                     data-category="fullstack" 
+                     data-aos="flip-left" 
+                     data-aos-duration="1000" 
+                     data-aos-delay="600"
+                     data-tilt 
+                     data-tilt-max="15" 
+                     data-tilt-speed="400" 
+                     data-tilt-glare 
+                     data-tilt-max-glare="0.5">
+                    <div class="portfolio-image">
+                        <img src="images/playcv-backend.png" alt="Play_CV Backend Project" />
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content space-y-4">
+                                <div class="space-y-2">
+                                    <h3 class="animate__animated animate__bounceIn">PLAY_CV</h3>
+                                    <p class="animate__animated animate__fadeInUp animate__delay-1s">AI-Powered CV Enhancement Platform</p>
+                                </div>
+                                <div class="tech-stack space-x-2">
+                                    <span class="shadcn-badge hvr-bounce-in">Node.js</span>
+                                    <span class="shadcn-badge hvr-bounce-in">Express.js</span>
+                                    <span class="shadcn-badge hvr-bounce-in">MongoDB</span>
+                                    <span class="shadcn-badge hvr-bounce-in">OpenAI API</span>
+                                    <span class="shadcn-badge hvr-bounce-in">JWT</span>
+                                    <span class="shadcn-badge hvr-bounce-in">React</span>
+                                </div>
+                                <p class="project-description animate__animated animate__fadeInUp animate__delay-2s">Full-stack application that helps users create and optimize their CVs using AI. Features secure authentication, real-time editing, and intelligent suggestions.</p>
+                                <div class="portfolio-links space-x-2">
+                                    <a href="https://github.com/stato10/Play_cv" target="_blank" rel="noopener" class="shadcn-button shadcn-button-primary portfolio-link hvr-grow">VIEW CODE</a>
+                                    <a href="#" class="shadcn-button shadcn-button-outline portfolio-link hvr-grow">LIVE DEMO</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="project-card animate-on-scroll" style="--delay: 0.2s">
-                    <div class="project-image">
-                        <img src="images/government-systems.png" alt="Solar Forecast System Project Screenshot" />
-                    </div>
-                    <div class="project-info">
-                        <h3>Solar Forecast System</h3>
-                        <p>Full Stack • Express.js •REST APIs • Tailwind CSS • AI Integration</p>
-                        <a href="https://github.com/stato10" class="project-link">View Project →</a>
+                <div class="portfolio-item shadcn-card tilt-card hvr-float-shadow" 
+                     data-category="ai" 
+                     data-aos="flip-right" 
+                     data-aos-duration="1000" 
+                     data-aos-delay="800"
+                     data-tilt 
+                     data-tilt-max="15" 
+                     data-tilt-speed="400" 
+                     data-tilt-glare 
+                     data-tilt-max-glare="0.5">
+                    <div class="portfolio-image">
+                        <img src="images/government-systems.png" alt="Solar Forecast System" />
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content space-y-4">
+                                <div class="space-y-2">
+                                    <h3 class="animate__animated animate__bounceIn">SOLAR FORECAST</h3>
+                                    <p class="animate__animated animate__fadeInUp animate__delay-1s">AI-Powered Solar Energy Prediction</p>
+                                </div>
+                                <div class="tech-stack space-x-2">
+                                    <span class="shadcn-badge shadcn-badge-secondary hvr-bounce-in">Python</span>
+                                    <span class="shadcn-badge shadcn-badge-secondary hvr-bounce-in">TensorFlow</span>
+                                    <span class="shadcn-badge shadcn-badge-secondary hvr-bounce-in">Express.js</span>
+                                    <span class="shadcn-badge shadcn-badge-secondary hvr-bounce-in">REST API</span>
+                                    <span class="shadcn-badge shadcn-badge-secondary hvr-bounce-in">React</span>
+                                </div>
+                                <p class="project-description animate__animated animate__fadeInUp animate__delay-2s">Machine learning system that predicts solar energy output based on weather data and historical patterns. Includes real-time monitoring dashboard.</p>
+                                <div class="portfolio-links space-x-2">
+                                    <a href="https://github.com/stato10" target="_blank" rel="noopener" class="shadcn-button shadcn-button-primary portfolio-link hvr-grow">VIEW PROJECT</a>
+                                    <a href="#" class="shadcn-button shadcn-button-outline portfolio-link hvr-grow">LIVE DEMO</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card animate-on-scroll" style="--delay: 0.2s">
-                    <div class="project-image">
-                        <img src="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1753432718/Screenshot_2025-07-25_113126_a9imp7.png" alt="Solar Forecast System Project Screenshot" />
-                    </div>
-                    <div class="project-info">
-                        <h3>Critics Media</h3>
-                        <p>WordPress • PHP </p>
-                        <a href="https://github.com/stato10" class="project-link">View Project →</a>
-                        <a href="https://criticsmedia.digital/" class="project-link">View site →</a>
-                    </div>
                 
-                <!-- <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/government-systems.png" alt="Government IT Systems Project Screenshot" />
+                <div class="portfolio-item shadcn-card tilt-card hvr-float-shadow" 
+                     data-category="web" 
+                     data-aos="fade-up" 
+                     data-aos-duration="1000" 
+                     data-aos-delay="1000"
+                     data-tilt 
+                     data-tilt-max="15" 
+                     data-tilt-speed="400" 
+                     data-tilt-glare 
+                     data-tilt-max-glare="0.5">
+                    <div class="portfolio-image">
+                        <img src="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1753432718/Screenshot_2025-07-25_113126_a9imp7.png" alt="Critics Media" />
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content space-y-4">
+                                <div class="space-y-2">
+                                    <h3 class="animate__animated animate__bounceIn">CRITICS MEDIA</h3>
+                                    <p class="animate__animated animate__fadeInUp animate__delay-1s">Digital Media & News Platform</p>
+                                </div>
+                                <div class="tech-stack space-x-2">
+                                    <span class="shadcn-badge shadcn-badge-outline hvr-bounce-in">WordPress</span>
+                                    <span class="shadcn-badge shadcn-badge-outline hvr-bounce-in">PHP</span>
+                                    <span class="shadcn-badge shadcn-badge-outline hvr-bounce-in">MySQL</span>
+                                    <span class="shadcn-badge shadcn-badge-outline hvr-bounce-in">Custom Themes</span>
+                                    <span class="shadcn-badge shadcn-badge-outline hvr-bounce-in">SEO</span>
+                                </div>
+                                <p class="project-description animate__animated animate__fadeInUp animate__delay-2s">Complete digital media platform with custom WordPress development, optimized for performance and SEO. Features content management and user engagement tools.</p>
+                                <div class="portfolio-links space-x-2">
+                                    <a href="https://github.com/stato10" target="_blank" rel="noopener" class="shadcn-button shadcn-button-primary portfolio-link hvr-grow">VIEW CODE</a>
+                                    <a href="https://criticsmedia.digital/" target="_blank" rel="noopener" class="shadcn-button shadcn-button-outline portfolio-link hvr-grow">LIVE SITE</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Government IT Systems Management</h3>
-                        <p>System Administration • Automation • VirtualBox • Multi-platform</p>
-                        <a href="#contact" class="project-link">Learn More →</a>
-                    </div> -->
                 </div>
+
+                <div class="portfolio-item shadcn-card tilt-card hvr-float-shadow" 
+                     data-category="backend" 
+                     data-aos="fade-left" 
+                     data-aos-duration="1000" 
+                     data-aos-delay="1200"
+                     data-tilt 
+                     data-tilt-max="15" 
+                     data-tilt-speed="400" 
+                     data-tilt-glare 
+                     data-tilt-max-glare="0.5">
+                    <div class="portfolio-image">
+                        <img src="images/solar-forecast.png" alt="Government Management System" />
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content space-y-4">
+                                <div class="space-y-2">
+                                    <h3 class="animate__animated animate__bounceIn">GOVERNMENT SYSTEMS</h3>
+                                    <p class="animate__animated animate__fadeInUp animate__delay-1s">Enterprise Management Platform</p>
+                                </div>
+                                <div class="tech-stack space-x-2">
+                                    <span class="shadcn-badge hvr-bounce-in">Java</span>
+                                    <span class="shadcn-badge hvr-bounce-in">Spring Boot</span>
+                                    <span class="shadcn-badge hvr-bounce-in">PostgreSQL</span>
+                                    <span class="shadcn-badge hvr-bounce-in">Microservices</span>
+                                    <span class="shadcn-badge hvr-bounce-in">Docker</span>
+                                </div>
+                                <p class="project-description animate__animated animate__fadeInUp animate__delay-2s">Scalable government management system with microservices architecture, secure authentication, and comprehensive data management capabilities.</p>
+                                <div class="portfolio-links space-x-2">
+                                    <a href="https://github.com/stato10" target="_blank" rel="noopener" class="shadcn-button shadcn-button-primary portfolio-link hvr-grow">VIEW CODE</a>
+                                    <a href="#" class="shadcn-button shadcn-button-outline portfolio-link hvr-grow">CASE STUDY</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
+        <div class="container">
         <div class="about-content">
-            <div class="about-portrait">
-                <img src="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1749741093/WhatsApp_Image_2025-06-12_at_18.07.57_900fb91c_e1xg1c.jpg" alt="Avraham Stato portrait" class="portrait-image" onerror="this.style.display='none'">
+                <div class="about-left">
+                    <div class="about-image">
+                        <img src="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1749741093/WhatsApp_Image_2025-06-12_at_18.07.57_900fb91c_e1xg1c.jpg" alt="Avraham Stato" />
+                        <div class="image-frame"></div>
+                    </div>
             </div>
+                
+                <div class="about-right">
+                    <h2 class="section-title">
+                        <span class="title-bg">ABOUT</span>
+                        <span class="title-front">WHO I AM</span>
+                    </h2>
+                    
             <div class="about-text">
-                <p class="about-intro">Hey! Now that we're friends, you can call me Stato. I'm a Full Stack Developer from Israel, specializing in Java, JavaScript, Node.js, AI integrations, and System Administration. I'm passionate about building scalable solutions with modern technologies and always eager to explore new technologies and creative coding challenges.</p>
-                <p class="about-description">Software Engineering at Ort Singalovski College with a 90 GPA. I excel at integrating external APIs (OpenAI, GCP, Google Maps) and have a strong background managing IT systems for government projects. Fast learner, excellent problem-solver, and dedicated to building innovative solutions.</p>
-                <div class="resume-download">
-                  <a href="https://drive.google.com/file/d/1hQ5X5YGarVHYnatNNdC1t33iP3vQsWR-/view?usp=drive_link" class="resume-link" target="_blank" rel="noopener">↓ Resume</a>
+                        <p class="about-intro">Hey! Now that we're friends, you can call me <strong>STATO</strong>. I'm a Full Stack Developer from Israel, specializing in Java, JavaScript, Node.js, AI integrations, and System Administration.</p>
+                        
+                        <p class="about-description">I'm passionate about building scalable solutions with modern technologies and always eager to explore new technologies and creative coding challenges. Software Engineering at Ort Singalovski College with a 90 GPA.</p>
+                        
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">1+</span>
+                                <span class="stat-label">YEARS EXPERIENCE</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">10+</span>
+                                <span class="stat-label">PROJECTS COMPLETED</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">90</span>
+                                <span class="stat-label">GPA SCORE</span>
+                            </div>
+                        </div>
+                        
+                        <div class="about-cta">
+                            <a href="https://drive.google.com/file/d/1hQ5X5YGarVHYnatNNdC1t33iP3vQsWR-/view?usp=drive_link" target="_blank" rel="noopener" class="btn btn-primary">DOWNLOAD RESUME</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,54 +366,109 @@
 
     <!-- Skills Section -->
     <section id="skills" class="skills">
-        <div class="skills-content">
-            <div class="skills-category animate-on-scroll" style="--delay: 0.1s">
-                <h3>Languages</h3>
-                <div class="skills-tags">
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">Python</span>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-bg">SKILLS</span>
+                    <span class="title-front">EXPERTISE</span>
+                </h2>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">LANGUAGES</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Java</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">BACKEND</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Express.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">REST API</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90"></div>
+                            </div>
+                </div>
                 </div>
             </div>
             
-            <div class="skills-category animate-on-scroll" style="--delay: 0.2s">
-                <h3>Backend</h3>
-                <div class="skills-tags">
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Express.js</span>
-                    <span class="skill-tag">REST API</span>
-                    <span class="skill-tag">OAuth 2.0</span>
-                    <span class="skill-tag">JWT</span>
+                <div class="skill-category">
+                    <h3 class="category-title">FRONTEND</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">HTML5/CSS3</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Tailwind CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
                 </div>
             </div>
-            
-            <div class="skills-category animate-on-scroll" style="--delay: 0.3s">
-                <h3>Frontend</h3>
-                <div class="skills-tags">
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">Tailwind</span>
-                    <span class="skill-tag">Bootstrap</span>
                 </div>
-            </div>
-            
-         
 
-                <div class="skills-category animate-on-scroll" style="--delay: 0.4s">
-                <h3>Database & Others</h3>
-                <div class="skills-tags">
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Postman</span>
-                    <span class="skill-tag">Linux</span>
-                    <span class="skill-tag">GCP</span>
-                    <span class="skill-tag">VirtualBox</span>
-                    <span class="skill-tag">IT specialist</span>
-                </div>
-
+                <div class="skill-category">
+                    <h3 class="category-title">TOOLS & OTHERS</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">MongoDB</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Git</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Linux/System Admin</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="80"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -233,34 +477,58 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Let's Work Together</h2>
             <div class="contact-content">
+                <div class="contact-left">
+                    <h2 class="section-title">
+                        <span class="title-bg">CONTACT</span>
+                        <span class="title-front">GET IN TOUCH</span>
+                    </h2>
+                    
                 <div class="contact-info">
-                    <p>Ready to collaborate on your next project? I'd love to discuss how we can build scalable, innovative solutions together. Whether it's backend development, API integration, or full-stack applications.</p>
-                    <div class="contact-methods">
-                        <a href="mailto:statto@gmail.com" class="contact-link">
-                            <span>Email</span>
-                            <span>statto3@gmail.com</span>
-                        </a>
-                        <a href="tel:+972548872039" class="contact-link">
-                            <span>Phone</span>
-                            <span>+972-54-887-2039</span>
-                        </a>
+                        <p class="contact-text">Ready to collaborate on your next project? I'd love to discuss how we can build scalable, innovative solutions together. Whether it's backend development, API integration, or full-stack applications.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-label">EMAIL</span>
+                                <a href="mailto:statto3@gmail.com" class="contact-value">statto3@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">PHONE</span>
+                                <a href="tel:+972548872039" class="contact-value">+972-54-887-2039</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">LOCATION</span>
+                                <span class="contact-value">Israel</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-social">
+                            <a href="https://github.com/stato10" target="_blank" rel="noopener" class="social-link">GITHUB</a>
+                            <a href="https://linkedin.com/in/avraham-stato" target="_blank" rel="noopener" class="social-link">LINKEDIN</a>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="contact-right">
                 <div class="contact-form">
                     <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="name" name="name" placeholder="YOUR NAME" required>
+                                </div>
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                    <input type="email" id="email" name="email" placeholder="YOUR EMAIL" required>
+                                </div>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                                <input type="text" id="subject" name="subject" placeholder="SUBJECT" required>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                                <textarea id="message" name="message" placeholder="YOUR MESSAGE" rows="6" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                            <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -268,45 +536,55 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="container">
         <div class="footer-content">
-            <p>Designed and coded by Avraham Stato © 2025</p>
+                <div class="footer-left">
+                    <div class="footer-logo">STATO</div>
+                    <p class="footer-text">Building the future through code</p>
+                </div>
+                <div class="footer-right">
+                    <p class="footer-copyright">© 2025 Avraham Stato. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Music Overlay -->
     <div id="musicOverlay" class="music-overlay">
-      <h2 class="overlay-title">Welcome to My Portfolio</h2>
-      <button id="musicOverlayBtn">▶ Play with Music</button>
-      <button id="silentOverlayBtn">▶ View Silently</button>
+        <h2 class="overlay-title">WELCOME TO MY PORTFOLIO</h2>
+        <button id="musicOverlayBtn" class="overlay-btn">▶ PLAY WITH MUSIC</button>
+        <button id="silentOverlayBtn" class="overlay-btn">▶ VIEW SILENTLY</button>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
 
 <!-- Contact Form Modal -->
 <div id="contactModal" class="contact-modal">
     <div class="contact-modal-content">
         <span class="close-modal">&times;</span>
-        <h2>Send me a message</h2>
+            <h2>SEND MESSAGE</h2>
         <form id="contactForm">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+                    <label for="modalName">Name</label>
+                    <input type="text" id="modalName" name="name" required>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                    <label for="modalEmail">Email</label>
+                    <input type="email" id="modalEmail" name="email" required>
             </div>
             <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" required>
+                    <label for="modalSubject">Subject</label>
+                    <input type="text" id="modalSubject" name="subject" required>
             </div>
             <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
+                    <label for="modalMessage">Message</label>
+                    <textarea id="modalMessage" name="message" required></textarea>
             </div>
-            <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">SEND MESSAGE</button>
         </form>
     </div>
 </div> 
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
