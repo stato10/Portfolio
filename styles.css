@@ -1896,7 +1896,7 @@ html {
         justify-content: center;
         align-items: center;
         gap: 20px;
-        transition: right 0.3s ease;
+        transition: right 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
         box-shadow: 
             -8px 0 40px rgba(0, 0, 0, 0.4),
             inset 1px 0 0 rgba(255, 255, 255, 0.1);
@@ -1905,12 +1905,6 @@ html {
         z-index: 1000;
         opacity: 0;
         visibility: hidden;
-    }
-    
-    .nav-menu.active {
-        right: 0;
-        opacity: 1;
-        visibility: visible;
     }
     
     .nav-menu .nav-link {
@@ -1934,6 +1928,8 @@ html {
 
     .nav-menu.active {
         right: 0;
+        opacity: 1;
+        visibility: visible;
     }
 
     .hamburger {
@@ -2054,6 +2050,10 @@ html {
     }
     
     /* Improved mobile navigation */
+    .nav-menu.active {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
     
     /* Better touch scrolling */
     .portfolio-grid {
