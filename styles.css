@@ -1879,6 +1879,10 @@ html {
         display: flex;
     }
     
+    .nav-links-container {
+        display: none;
+    }
+    
     .nav-menu {
         position: fixed;
         top: 0;
@@ -1898,6 +1902,15 @@ html {
             inset 1px 0 0 rgba(255, 255, 255, 0.1);
         margin: 0;
         padding: 0;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .nav-menu.active {
+        right: 0;
+        opacity: 1;
+        visibility: visible;
     }
     
     .nav-menu .nav-link {
@@ -2041,10 +2054,6 @@ html {
     }
     
     /* Improved mobile navigation */
-    .nav-menu.active {
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-    }
     
     /* Better touch scrolling */
     .portfolio-grid {
