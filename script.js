@@ -707,7 +707,7 @@ document.head.appendChild(rainbowStyle);
   if (!audio || !playBtn || !playIcon || !pauseIcon || !progressBar || !muteBtn || !muteIcon || !unmuteIcon || !musicOverlay || !musicOverlayBtn || !silentOverlayBtn) return;
 
   // Show overlay on load
-  musicOverlay.style.display = '';
+  musicOverlay.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 
   // Handle music option
