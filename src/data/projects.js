@@ -4,7 +4,9 @@ const projectMedia = {
   livekit: 'https://res.cloudinary.com/dpz2lh8hu/image/upload/v1769536830/Screenshot_2026-01-27_195603_jab8yn.png',
 }
 
-const createProjectMedia = ({ thumbnail = null, screenshots = [], poster = thumbnail, handoffBackground = '#070b12' } = {}) => ({
+const publicAsset = (path) => `${import.meta.env?.BASE_URL || '/portfolio/'}${path.replace(/^\//, '')}`
+
+const createProjectMedia = ({ thumbnail = null, screenshots = [], poster = thumbnail, fallbackPoster = thumbnail, handoffBackground = '#070b12', launch = {} } = {}) => ({
   icon: '',
   thumbnail,
   screenshots,
@@ -12,14 +14,21 @@ const createProjectMedia = ({ thumbnail = null, screenshots = [], poster = thumb
   demoVideo: null,
   launch: {
     video: null,
+    mobileVideo: null,
     poster,
+    fallbackPoster,
     mode: 'standard',
+    mobileMode: 'standard',
+    reducedMotionMode: 'standard',
     openAt: null,
     maxDuration: 4500,
+    ...launch,
     handoff: {
       target: 'project-hero',
       background: handoffBackground,
       focalPoint: 'center',
+      duration: 520,
+      ...launch.handoff,
     },
   },
 })
@@ -47,6 +56,23 @@ export const projects = [
       thumbnail: projectMedia.solar,
       screenshots: [{ type: 'image', src: projectMedia.solar, alt: 'Solar forecasting dashboard interface' }],
       poster: projectMedia.solar,
+      launch: {
+        video: publicAsset('videos/projects/solar/solar-launch.mp4'),
+        mobileVideo: null,
+        poster: publicAsset('videos/projects/solar/solar-launch-poster.webp'),
+        fallbackPoster: projectMedia.solar,
+        mode: 'cinematic',
+        mobileMode: 'standard',
+        reducedMotionMode: 'standard',
+        openAt: 3,
+        maxDuration: 4800,
+        handoff: {
+          target: 'project-hero',
+          background: '#070b12',
+          focalPoint: 'center',
+          duration: 520,
+        },
+      },
     }),
     architecture: {
       frontend: 'Next.js client for system inputs, forecast views and recommendations',

@@ -1,6 +1,7 @@
 import { createContext, createElement, useCallback, useContext, useMemo, useReducer, useRef } from 'react'
 import { appById } from '../data/apps'
 import { projectById } from '../data/projects'
+import { resolveProjectLaunchMedia } from '../motion/projectLaunchMedia'
 
 const OSContext = createContext(null)
 
@@ -164,8 +165,11 @@ export function OSProvider({ children, navigate, pathname }) {
     const project = projectById.get(projectId)
     if (!project) return false
     const configuredLaunch = project.media.launch || {}
-    const video = options.video ?? options.launchVideo ?? configuredLaunch.video ?? project.media.launchVideo ?? null
-    const requestedMode = options.mode ?? (options.cinematic ? 'cinematic' : configuredLaunch.mode)
+    const resolvedLaunch = resolveProjectLaunchMedia(configuredLaunch, {
+      ...options,
+      poster: options.poster ?? configuredLaunch.poster ?? project.media.poster ?? project.media.thumbnail,
+      fallbackPoster: options.fallbackPoster ?? configuredLaunch.fallbackPoster ?? project.media.thumbnail,
+    })
     dispatch({
       type: 'START_PROJECT_LAUNCH',
       launch: {
@@ -173,14 +177,7 @@ export function OSProvider({ children, navigate, pathname }) {
         projectId: project.id,
         accent: options.accent ?? project.accent,
         standardDuration: options.standardDuration ?? options.duration ?? 650,
-        media: {
-          mode: requestedMode === 'cinematic' && video ? 'cinematic' : 'standard',
-          video,
-          poster: options.poster ?? configuredLaunch.poster ?? project.media.poster ?? project.media.thumbnail,
-          openAt: options.openAt ?? configuredLaunch.openAt ?? null,
-          maxDuration: options.maxDuration ?? configuredLaunch.maxDuration ?? 4500,
-          handoff: options.handoff ?? configuredLaunch.handoff ?? null,
-        },
+        media: resolvedLaunch,
       },
     })
     return true
@@ -190,13 +187,13 @@ export function OSProvider({ children, navigate, pathname }) {
 
   const routeForProject = useCallback((project) => `/projects/${project.slug}`, [])
 
-  const completeProjectLaunch = useCallback((projectId) => {
+  const completeProjectLaunch = useCallback((projectId, options = {}) => {
     const project = projectById.get(projectId)
     if (!project) return false
     openProject(project.id)
     const target = routeForProject(project)
     if (pathname !== target) navigate(target)
-    clearProjectLaunch()
+    if (!options.preserveLaunch) clearProjectLaunch()
     return true
   }, [clearProjectLaunch, navigate, openProject, pathname, routeForProject])
 
