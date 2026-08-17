@@ -1,4 +1,6 @@
 import { ArrowUpRight, Cpu, FileText, Mail, Sparkles } from 'lucide-react'
+import { experiencePath, profile } from '../data/experience'
+import { skillGroups } from '../data/skills'
 
 const content = {
   'ai-lab': {
@@ -18,21 +20,22 @@ const content = {
   resume: {
     code: 'DOC / PROFESSIONAL RECORD',
     title: 'Resume',
-    summary: 'Software engineer with 3+ years of experience and 20+ shipped projects across full-stack development, AI and automation.',
+    summary: profile.experienceNote,
     icon: FileText,
-    items: ['React · Node.js · Java', 'OpenAI · Python · Cloud', 'Tel Aviv, Israel'],
+    items: experiencePath.map((item) => item.label),
   },
   contact: {
     code: 'COMMS / DIRECT CHANNEL',
     title: 'Let’s build something useful.',
-    summary: 'Available for selected product engineering, AI systems and creative technology engagements.',
+    summary: `Available for selected product engineering, AI systems and automation engagements from ${profile.location}.`,
     icon: Mail,
-    items: ['contact@stato.dev', 'github.com/stato10', 'Tel Aviv · GMT+3'],
+    items: [profile.email, 'github.com/stato10', `${profile.location} · GMT+3`],
   },
 }
 
 export default function PlaceholderApp({ appId }) {
   const item = content[appId] || content.systems
+  const displayItems = appId === 'systems' ? skillGroups.find((group) => group.id === 'systems')?.skills || item.items : item.items
   const Icon = item.icon
   const isContact = appId === 'contact'
 
@@ -42,7 +45,7 @@ export default function PlaceholderApp({ appId }) {
       <span className="app-kicker">{item.code}</span>
       <h2>{item.title}</h2>
       <p>{item.summary}</p>
-      <ul>{item.items.map((value, index) => <li key={value}><span>0{index + 1}</span>{value}</li>)}</ul>
+      <ul>{displayItems.map((value, index) => <li key={value}><span>0{index + 1}</span>{value}</li>)}</ul>
       {isContact && <a href="mailto:contact@stato.dev">Open email channel <ArrowUpRight size={16} /></a>}
       {!isContact && <span className="phase-badge">Phase 1 · Foundation</span>}
     </div>

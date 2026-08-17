@@ -7,7 +7,7 @@ const formatTime = () => new Intl.DateTimeFormat('en', {
 }).format(new Date())
 
 export default function MenuBar() {
-  const { windows, activeWindowId, openApp } = useOSStore()
+  const { windows, activeWindowId, openApp, openSpotlight } = useOSStore()
   const [time, setTime] = useState(formatTime)
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function MenuBar() {
         <span className="menu-item">View</span>
       </div>
       <div className="menu-right" aria-label="System status">
-        <button onClick={() => openApp('projects')} aria-label="Search projects"><Search size={14} /></button>
+        <button onClick={openSpotlight} aria-label="Open Spotlight search"><Search size={14} /></button>
         <Wifi size={15} />
         <BatteryMedium size={17} />
         <time>{time}</time>

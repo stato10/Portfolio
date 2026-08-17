@@ -3,6 +3,9 @@ import MenuBar from './MenuBar'
 import Dock from './Dock'
 import DesktopIcons from './DesktopIcons'
 import WindowManager from './WindowManager'
+import Spotlight from './Spotlight'
+import ProjectLaunchTransition from './transitions/ProjectLaunchTransition'
+import { profile } from '../data/experience'
 
 export default function Desktop({ ready }) {
   return (
@@ -17,11 +20,13 @@ export default function Desktop({ ready }) {
       <MenuBar />
       <section className="desktop-identity" aria-label="STATO OS introduction">
         <p>STATO OS <span>/ 01</span></p>
-        <h1>Software Engineer<br /><em>AI Systems Builder</em></h1>
-        <div className="identity-status"><i /> Available for selected projects <span>Tel Aviv · GMT+3</span></div>
+        <h1>{profile.role.split(' / ')[0]}<br /><em>{profile.role.split(' / ')[1]}</em></h1>
+        <div className="identity-status"><i /> Available for selected projects <span>{profile.location} · GMT+3</span></div>
       </section>
       <DesktopIcons />
       <WindowManager />
+      <Spotlight />
+      <ProjectLaunchTransition />
       <Dock />
       <p className="desktop-coordinate">34.7818° N&nbsp;&nbsp; 32.0853° E</p>
     </motion.main>

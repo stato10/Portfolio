@@ -8,6 +8,7 @@ const clamp = (value, min, max) => Math.min(Math.max(value, min), Math.max(min, 
 
 export default function AppWindow({ windowItem, children }) {
   const dragRef = useRef(null)
+  const windowRef = useRef(null)
   const reduceMotion = useReducedMotion()
   const { closeWindow, focusWindow, minimizeWindow, toggleMaximize, setWindowBounds, activeWindowId } = useOSStore()
   const active = activeWindowId === windowItem.id
@@ -25,15 +26,27 @@ export default function AppWindow({ windowItem, children }) {
     if (!start || start.pointerId !== event.pointerId) return
     const x = clamp(start.originX + event.clientX - start.startX, 8, window.innerWidth - bounds.width - 8)
     const y = clamp(start.originY + event.clientY - start.startY, 40, window.innerHeight - 96)
-    setWindowBounds(windowItem.id, { x, y })
+    dragRef.current.latestX = x
+    dragRef.current.latestY = y
+    if (windowRef.current) {
+      windowRef.current.style.left = `${x}px`
+      windowRef.current.style.top = `${y}px`
+    }
   }
 
   const stopDrag = (event) => {
-    if (dragRef.current?.pointerId === event.pointerId) dragRef.current = null
+    if (dragRef.current?.pointerId === event.pointerId) {
+      setWindowBounds(windowItem.id, {
+        x: dragRef.current.latestX ?? bounds.x,
+        y: dragRef.current.latestY ?? bounds.y,
+      })
+      dragRef.current = null
+    }
   }
 
   return (
     <motion.section
+      ref={windowRef}
       {...(reduceMotion ? reducedWindowMotion : windowMotion)}
       className={`app-window${active ? ' is-active' : ''}${windowItem.maximized ? ' is-maximized' : ''}`}
       style={{ left: bounds.x, top: bounds.y, width: bounds.width, height: bounds.height, zIndex: windowItem.zIndex }}
