@@ -21,14 +21,14 @@ export default function Desktop({ ready }) {
       <section className="desktop-identity" aria-label="STATO OS introduction">
         <p>STATO OS <span>/ 01</span></p>
         <h1>{profile.role.split(' / ')[0]}<br /><em>{profile.role.split(' / ')[1]}</em></h1>
-        <div className="identity-status"><i /> Available for selected projects <span>{profile.location} · GMT+3</span></div>
+        <div className="identity-status"><i /> Available for selected projects {profile.location && <span>{profile.location}</span>}</div>
       </section>
       <DesktopIcons />
       <WindowManager />
       <Spotlight />
       <ProjectLaunchTransition />
       <Dock />
-      <p className="desktop-coordinate">34.7818° N&nbsp;&nbsp; 32.0853° E</p>
+      <p className="desktop-coordinate">STATO OS&nbsp;&nbsp; SESSION ACTIVE</p>
     </motion.main>
   )
 }

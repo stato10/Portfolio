@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { profile } from '../data/experience'
 
 const revealAnimation = {
   initial: { opacity: 0, y: 50 },
@@ -45,39 +46,35 @@ function Contact() {
 
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
             <a
-              href="mailto:contact@stato.dev"
-              className="group relative px-10 py-5 bg-primary text-bg-primary rounded-full font-display tracking-widest uppercase overflow-hidden transition-transform duration-300 hover:scale-105"
-            >
-              <span className="relative z-10">Email Me</span>
-              <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[0.16,1,0.3,1]" />
-            </a>
-
-            <a
-              href="https://linkedin.com/in/stato"
+              href={profile.contact.github}
               target="_blank"
               rel="noopener noreferrer"
               className="group px-10 py-5 border border-primary/30 rounded-full font-display tracking-widest uppercase text-text-muted hover:text-primary hover:border-primary transition-all duration-300 hover:bg-primary/10"
             >
-              LinkedIn
+              GitHub
             </a>
+            {profile.contact.email && (
+              <a
+                href={`mailto:${profile.contact.email}`}
+                className="group relative px-10 py-5 bg-primary text-bg-primary rounded-full font-display tracking-widest uppercase overflow-hidden transition-transform duration-300 hover:scale-105"
+              >
+                <span className="relative z-10">Email Me</span>
+                <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[0.16,1,0.3,1]" />
+              </a>
+            )}
           </div>
 
-          <div className="mt-16 pt-8 border-t border-primary/20 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-sans uppercase tracking-widest text-text-muted">Location</span>
-              <span className="font-display text-primary">Tel Aviv, IL</span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <span className="text-xs font-sans uppercase tracking-widest text-text-muted">Timezone</span>
-              <span className="font-display text-primary">GMT +2</span>
-            </div>
+          <div className="mt-16 pt-8 border-t border-primary/20 grid grid-cols-1 gap-8">
+            {profile.location && (
+              <div className="flex flex-col gap-2">
+                <span className="text-xs font-sans uppercase tracking-widest text-text-muted">Location</span>
+                <span className="font-display text-primary">{profile.location}</span>
+              </div>
+            )}
             <div className="flex flex-col gap-2">
               <span className="text-xs font-sans uppercase tracking-widest text-text-muted">Socials</span>
               <div className="flex justify-center gap-4 text-primary">
-                {/* Simple text links or icons could go here */}
-                <a href="#" className="hover:text-accent transition-colors">GH</a>
-                <a href="#" className="hover:text-accent transition-colors">TW</a>
-                <a href="#" className="hover:text-accent transition-colors">IG</a>
+                <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">GitHub</a>
               </div>
             </div>
           </div>

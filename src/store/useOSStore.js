@@ -1,20 +1,8 @@
-import { createContext, createElement, useCallback, useContext, useMemo, useReducer } from 'react'
+import { createContext, createElement, useCallback, useContext, useMemo, useReducer, useRef } from 'react'
 import { appById } from '../data/apps'
 import { projectById } from '../data/projects'
 
 const OSContext = createContext(null)
-
-function syncProjectRoute(windowId, mode = 'project') {
-  if (!windowId.startsWith('project:')) return
-  const project = projectById.get(windowId.slice('project:'.length))
-  if (!project) return
-  const base = import.meta.env.BASE_URL || '/'
-  const target = mode === 'project' ? `${base}projects/${project.slug}` : base
-  if (window.location.pathname === target) return
-  if (mode === 'desktop' && !window.location.pathname.endsWith(`/projects/${project.slug}`)) return
-  window.history.pushState({}, '', target)
-  window.dispatchEvent(new PopStateEvent('popstate'))
-}
 
 const viewportBounds = () => ({
   width: typeof window === 'undefined' ? 1280 : window.innerWidth,
@@ -143,8 +131,9 @@ function reducer(state, action) {
   }
 }
 
-export function OSProvider({ children }) {
+export function OSProvider({ children, navigate, pathname }) {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const launchSequence = useRef(0)
   const openApp = useCallback((appId) => {
     const app = appById.get(appId)
     if (!app) return
@@ -174,39 +163,73 @@ export function OSProvider({ children }) {
   const launchProject = useCallback((projectId, options = {}) => {
     const project = projectById.get(projectId)
     if (!project) return false
+    const configuredLaunch = project.media.launch || {}
+    const video = options.video ?? options.launchVideo ?? configuredLaunch.video ?? project.media.launchVideo ?? null
+    const requestedMode = options.mode ?? (options.cinematic ? 'cinematic' : configuredLaunch.mode)
     dispatch({
       type: 'START_PROJECT_LAUNCH',
       launch: {
+        requestId: ++launchSequence.current,
         projectId: project.id,
-        poster: options.poster ?? project.media.poster ?? project.media.thumbnail,
-        launchVideo: options.launchVideo ?? project.media.launchVideo,
         accent: options.accent ?? project.accent,
-        duration: options.duration ?? 650,
-        cinematic: options.cinematic ?? false,
+        standardDuration: options.standardDuration ?? options.duration ?? 650,
+        media: {
+          mode: requestedMode === 'cinematic' && video ? 'cinematic' : 'standard',
+          video,
+          poster: options.poster ?? configuredLaunch.poster ?? project.media.poster ?? project.media.thumbnail,
+          openAt: options.openAt ?? configuredLaunch.openAt ?? null,
+          maxDuration: options.maxDuration ?? configuredLaunch.maxDuration ?? 4500,
+          handoff: options.handoff ?? configuredLaunch.handoff ?? null,
+        },
       },
     })
     return true
   }, [])
 
+  const clearProjectLaunch = useCallback(() => dispatch({ type: 'CLEAR_PROJECT_LAUNCH' }), [])
+
+  const routeForProject = useCallback((project) => `/projects/${project.slug}`, [])
+
+  const completeProjectLaunch = useCallback((projectId) => {
+    const project = projectById.get(projectId)
+    if (!project) return false
+    openProject(project.id)
+    const target = routeForProject(project)
+    if (pathname !== target) navigate(target)
+    clearProjectLaunch()
+    return true
+  }, [clearProjectLaunch, navigate, openProject, pathname, routeForProject])
+
+  const closeWindow = useCallback((id, options = {}) => {
+    dispatch({ type: 'CLOSE', id })
+    if (options.syncRoute === false || !id.startsWith('project:')) return
+    const project = projectById.get(id.slice('project:'.length))
+    if (project && pathname === routeForProject(project)) navigate('/')
+  }, [navigate, pathname, routeForProject])
+
+  const focusWindow = useCallback((id) => {
+    dispatch({ type: 'FOCUS', id })
+    if (!id.startsWith('project:')) return
+    const project = projectById.get(id.slice('project:'.length))
+    if (!project) return
+    const target = routeForProject(project)
+    if (pathname !== target) navigate(target)
+  }, [navigate, pathname, routeForProject])
+
   const actions = useMemo(() => ({
     openApp,
     openProject,
     launchProject,
-    clearProjectLaunch: () => dispatch({ type: 'CLEAR_PROJECT_LAUNCH' }),
+    completeProjectLaunch,
+    clearProjectLaunch,
     openSpotlight: () => dispatch({ type: 'SET_SPOTLIGHT', open: true }),
     closeSpotlight: () => dispatch({ type: 'SET_SPOTLIGHT', open: false }),
-    closeWindow: (id) => {
-      dispatch({ type: 'CLOSE', id })
-      syncProjectRoute(id, 'desktop')
-    },
-    focusWindow: (id) => {
-      dispatch({ type: 'FOCUS', id })
-      syncProjectRoute(id)
-    },
+    closeWindow,
+    focusWindow,
     minimizeWindow: (id) => dispatch({ type: 'MINIMIZE', id }),
     toggleMaximize: (id) => dispatch({ type: 'TOGGLE_MAXIMIZE', id }),
     setWindowBounds: (id, bounds) => dispatch({ type: 'SET_BOUNDS', id, bounds }),
-  }), [launchProject, openApp, openProject])
+  }), [clearProjectLaunch, closeWindow, completeProjectLaunch, focusWindow, launchProject, openApp, openProject])
 
   const value = useMemo(() => ({ ...state, ...actions }), [state, actions])
   return createElement(OSContext.Provider, { value }, children)

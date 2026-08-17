@@ -4,6 +4,26 @@ const projectMedia = {
   livekit: 'https://res.cloudinary.com/dpz2lh8hu/image/upload/v1769536830/Screenshot_2026-01-27_195603_jab8yn.png',
 }
 
+const createProjectMedia = ({ thumbnail = null, screenshots = [], poster = thumbnail, handoffBackground = '#070b12' } = {}) => ({
+  icon: '',
+  thumbnail,
+  screenshots,
+  heroVideo: null,
+  demoVideo: null,
+  launch: {
+    video: null,
+    poster,
+    mode: 'standard',
+    openAt: null,
+    maxDuration: 4500,
+    handoff: {
+      target: 'project-hero',
+      background: handoffBackground,
+      focalPoint: 'center',
+    },
+  },
+})
+
 export const projects = [
   {
     id: 'solar-intelligence',
@@ -23,15 +43,11 @@ export const projects = [
     stack: ['Next.js', 'React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'PVGIS', 'Open-Meteo'],
     capabilities: ['Production forecasting', 'Weather context', 'Panel-loss analysis', 'Risk alerts', 'ROI and self-consumption', 'Optimization recommendations'],
     links: { github: 'https://github.com/stato10/solar', live: '', demo: '' },
-    media: {
-      icon: '',
+    media: createProjectMedia({
       thumbnail: projectMedia.solar,
       screenshots: [{ type: 'image', src: projectMedia.solar, alt: 'Solar forecasting dashboard interface' }],
-      launchVideo: null,
-      heroVideo: null,
-      demoVideo: null,
       poster: projectMedia.solar,
-    },
+    }),
     architecture: {
       frontend: 'Next.js client for system inputs, forecast views and recommendations',
       backend: 'Node.js and Express orchestration API',
@@ -64,15 +80,11 @@ export const projects = [
     stack: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB', 'OpenAI', 'JWT / OAuth'],
     capabilities: ['Video profiles', 'Question and answer flow', 'AI personality analysis', 'Candidate assessment', 'Recruiter dashboard', 'Radar visualization'],
     links: { github: 'https://github.com/stato10/Play_cv', live: '', demo: '' },
-    media: {
-      icon: '',
+    media: createProjectMedia({
       thumbnail: projectMedia.playCv,
       screenshots: [{ type: 'image', src: projectMedia.playCv, alt: 'Play CV candidate experience' }],
-      launchVideo: null,
-      heroVideo: null,
-      demoVideo: null,
       poster: projectMedia.playCv,
-    },
+    }),
     architecture: {
       frontend: 'React and Vite candidate and recruiter interfaces',
       backend: 'Node.js and Express application API',
@@ -94,7 +106,7 @@ export const projects = [
     title: 'LiveKit Interview Coach',
     shortTitle: 'LiveKit Coach',
     category: 'Realtime AI',
-    year: '2025',
+    year: '2026',
     status: 'Built',
     featured: true,
     accent: '#62e1cf',
@@ -102,25 +114,21 @@ export const projects = [
     problem: 'Interview practice is most useful when feedback arrives in the context of a realistic conversation, not after an isolated text exercise.',
     solution: 'The coach coordinates real-time audio and video sessions, configurable interview stages and AI feedback so candidates can practice in a more representative environment.',
     role: ['Realtime session architecture', 'Agent configuration', 'Frontend integration', 'Feedback experience'],
-    stack: ['Python', 'LiveKit Agents SDK', 'OpenAI Realtime', 'Realtime audio / video', 'React', 'TypeScript'],
-    capabilities: ['Realtime voice', 'Camera sessions', 'Screen sharing', 'AI feedback', 'Interview coaching', 'Structured session flow'],
+    stack: ['Python', 'FastAPI', 'LiveKit Agents SDK', 'OpenAI', 'Realtime audio / video', 'React', 'TypeScript'],
+    capabilities: ['Realtime voice', 'Camera sessions', 'AI feedback', 'Interview coaching', 'Structured session flow', 'Session reports'],
     links: { github: 'https://github.com/stato10/interviewAvatar', live: '', demo: '' },
-    media: {
-      icon: '',
+    media: createProjectMedia({
       thumbnail: projectMedia.livekit,
       screenshots: [{ type: 'image', src: projectMedia.livekit, alt: 'Realtime AI interview coaching session' }],
-      launchVideo: null,
-      heroVideo: null,
-      demoVideo: null,
       poster: projectMedia.livekit,
-    },
+    }),
     architecture: {
       frontend: 'React session controls and coaching interface',
-      backend: 'Python agent and session configuration',
-      data: 'Ephemeral session state and structured feedback',
-      externalServices: ['LiveKit', 'OpenAI Realtime'],
+      backend: 'FastAPI service and Python LiveKit agent',
+      data: 'SQLAlchemy session records and structured reports',
+      externalServices: ['LiveKit', 'OpenAI'],
       flow: [
-        { id: 'participant', label: 'Participant', detail: 'Voice · camera · screen' },
+        { id: 'participant', label: 'Participant', detail: 'Voice · camera' },
         { id: 'livekit', label: 'LiveKit Room', detail: 'Realtime media transport' },
         { id: 'agent', label: 'Python Agent', detail: 'Session orchestration' },
         { id: 'realtime', label: 'OpenAI Realtime', detail: 'Conversation and feedback' },
@@ -146,7 +154,7 @@ export const projects = [
     stack: ['React', 'Node.js', 'External flight APIs', 'LLM integration', 'Structured itinerary data'],
     capabilities: ['Itinerary analysis', 'Connection-risk review', 'Baggage considerations', 'Visa and passport constraints', 'Route explanation', 'Result ranking'],
     links: { github: '', live: '', demo: '' },
-    media: { icon: '', thumbnail: null, screenshots: [], launchVideo: null, heroVideo: null, demoVideo: null, poster: null },
+    media: createProjectMedia(),
     architecture: {
       frontend: 'Search-results and route-comparison workspace',
       backend: 'Flight-provider normalization and analysis API',
@@ -172,17 +180,17 @@ export const projects = [
     status: 'Case study',
     featured: false,
     accent: '#a2b5ff',
-    description: 'An AI-assisted resume processing pipeline for extracting, structuring and improving resume content for ATS-oriented workflows.',
+    description: 'A React and Node.js resume workflow for uploading, parsing, structuring and improving resume content for ATS-oriented processing.',
     problem: 'Resume content arrives in inconsistent document formats, while ATS workflows need predictable structure and role-relevant language.',
-    solution: 'The system parses source PDFs, maps content into a structured resume schema, assists with targeted improvements and packages the result for export.',
+    solution: 'The system uploads and parses source PDFs, maps content into structured resume data, applies targeted improvements and packages the result for export.',
     role: ['Document pipeline design', 'Structured extraction', 'AI transformation flow', 'Export experience'],
-    stack: ['Python', 'PDF parsing', 'Structured JSON', 'LLM integration', 'Document export'],
+    stack: ['React', 'Node.js', 'PDF parsing', 'Structured JSON', 'LLM integration', 'Document export'],
     capabilities: ['PDF parsing', 'Structured resume extraction', 'ATS schema', 'Resume improvement', 'Packaging and export'],
     links: { github: '', live: '', demo: '' },
-    media: { icon: '', thumbnail: null, screenshots: [], launchVideo: null, heroVideo: null, demoVideo: null, poster: null },
+    media: createProjectMedia(),
     architecture: {
-      frontend: 'Upload, review and export workflow',
-      backend: 'Document-processing pipeline',
+      frontend: 'React upload, review and export workflow',
+      backend: 'Node.js endpoints for upload, improvement and packaging',
       data: 'Validated ATS-oriented resume schema',
       externalServices: ['PDF parser', 'LLM transformation service'],
       flow: [
@@ -209,14 +217,14 @@ export const projects = [
     problem: 'Manual attendance and workstation assignment are slow, error-prone and difficult to reconcile during high-volume examination sessions.',
     solution: 'The system pairs examinee and workstation scans, prevents duplicate assignment, tracks attendance state and exports operational records for review.',
     role: ['Workflow design', 'Python / Flask implementation', 'Validation logic', 'Operational export'],
-    stack: ['Python', 'Flask', 'QR / barcode scanning', 'openpyxl', 'CSV / Excel', 'MySQL-ready data layer'],
+    stack: ['Python', 'Flask', 'QR / barcode scanning', 'openpyxl', 'CSV / Excel'],
     capabilities: ['Examinee scanning', 'Computer scanning', 'Duplicate detection', 'Attendance tracking', 'CSV / Excel export', 'Workstation assignment'],
     links: { github: '', live: '', demo: '' },
-    media: { icon: '', thumbnail: null, screenshots: [], launchVideo: null, heroVideo: null, demoVideo: null, poster: null },
+    media: createProjectMedia(),
     architecture: {
       frontend: 'Scanner-focused Flask interface',
       backend: 'Python validation and assignment service',
-      data: 'Session records with a later MySQL path',
+      data: 'Session records exported to CSV / Excel',
       externalServices: ['Barcode / QR scanners', 'openpyxl export'],
       flow: [
         { id: 'examinee', label: 'Examinee Scan', detail: 'Candidate identifier' },

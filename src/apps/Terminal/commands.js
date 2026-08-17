@@ -57,7 +57,14 @@ export const commands = {
   experience: () => ({ lines: [profile.experienceNote, '', ...experiencePath.map((item, index) => `${String(index + 1).padStart(2, '0')}  ${item.label} — ${item.summary}`)] }),
   contact: ({ openApp }) => {
     openApp('contact')
-    return { lines: [`Email     ${profile.email}`, 'GitHub    github.com/stato10', `Location  ${profile.location}`], tone: 'success' }
+    return {
+      lines: [
+        profile.contact.email ? `Email     ${profile.contact.email}` : 'Email     Available on request',
+        `GitHub    ${profile.contact.githubLabel}`,
+        ...(profile.location ? [`Location  ${profile.location}`] : []),
+      ],
+      tone: 'success',
+    }
   },
   clear: () => ({ clear: true, lines: [] }),
 }

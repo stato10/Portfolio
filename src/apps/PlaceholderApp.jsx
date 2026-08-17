@@ -27,9 +27,11 @@ const content = {
   contact: {
     code: 'COMMS / DIRECT CHANNEL',
     title: 'Let’s build something useful.',
-    summary: `Available for selected product engineering, AI systems and automation engagements from ${profile.location}.`,
+    summary: profile.location
+      ? `Available for selected product engineering, AI systems and automation engagements from ${profile.location}.`
+      : 'Available for selected product engineering, AI systems and automation engagements.',
     icon: Mail,
-    items: [profile.email, 'github.com/stato10', `${profile.location} · GMT+3`],
+    items: [profile.contact.email, profile.contact.githubLabel, profile.location].filter(Boolean),
   },
 }
 
@@ -46,7 +48,8 @@ export default function PlaceholderApp({ appId }) {
       <h2>{item.title}</h2>
       <p>{item.summary}</p>
       <ul>{displayItems.map((value, index) => <li key={value}><span>0{index + 1}</span>{value}</li>)}</ul>
-      {isContact && <a href="mailto:contact@stato.dev">Open email channel <ArrowUpRight size={16} /></a>}
+      {isContact && profile.contact.email && <a href={`mailto:${profile.contact.email}`}>Open email channel <ArrowUpRight size={16} /></a>}
+      {isContact && !profile.contact.email && <a href={profile.contact.github} target="_blank" rel="noreferrer">Open GitHub profile <ArrowUpRight size={16} /></a>}
       {!isContact && <span className="phase-badge">Phase 1 · Foundation</span>}
     </div>
   )
