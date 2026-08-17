@@ -1,0 +1,68 @@
+export const apps = [
+  {
+    id: 'projects',
+    title: 'Projects',
+    shortLabel: 'Projects',
+    icon: 'layers',
+    accent: '#58d7ff',
+    defaultSize: { width: 860, height: 590 },
+  },
+  {
+    id: 'terminal',
+    title: 'Terminal',
+    shortLabel: 'Terminal',
+    icon: 'terminal',
+    accent: '#9be8ff',
+    defaultSize: { width: 720, height: 470 },
+  },
+  {
+    id: 'ai-lab',
+    title: 'AI Lab',
+    shortLabel: 'AI Lab',
+    icon: 'sparkles',
+    accent: '#a9a7ff',
+    defaultSize: { width: 720, height: 500 },
+  },
+  {
+    id: 'systems',
+    title: 'Systems',
+    shortLabel: 'Systems',
+    icon: 'cpu',
+    accent: '#7ca9ff',
+    defaultSize: { width: 700, height: 500 },
+  },
+  {
+    id: 'resume',
+    title: 'Resume',
+    shortLabel: 'Resume',
+    icon: 'file',
+    accent: '#dce7f1',
+    defaultSize: { width: 700, height: 570 },
+  },
+  {
+    id: 'about',
+    title: 'About Stato',
+    shortLabel: 'About',
+    icon: 'user',
+    accent: '#65e0d1',
+    defaultSize: { width: 760, height: 540 },
+  },
+  {
+    id: 'contact',
+    title: 'Contact',
+    shortLabel: 'Contact',
+    icon: 'send',
+    accent: '#7fd8ff',
+    defaultSize: { width: 590, height: 420 },
+  },
+  {
+    id: 'github',
+    title: 'GitHub',
+    shortLabel: 'GitHub',
+    icon: 'github',
+    accent: '#f1f5f9',
+    externalUrl: 'https://github.com/stato10',
+  },
+]
+
+export const appById = new Map(apps.map((app) => [app.id, app]))

@@ -7,22 +7,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        // GSAP Demo Hub–inspired dark UI (semantic tokens)
-        'bg-primary': '#0a0a0a',
-        'surface': '#141414',
-        'surface-elevated': '#1a1a1a',
-        'primary': '#0ae448',
-        'accent': '#4ade80',
-        'text-primary': '#f4f4f5',
-        'text-muted': '#a1a1aa',
+        'bg-primary': '#07090c',
+        'surface': '#11171e',
+        'surface-elevated': '#18212b',
+        'primary': '#65dcff',
+        'accent': '#618cff',
+        'text-primary': '#eef4f8',
+        'text-muted': '#8b9aa8',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"Rubik Mono One"', 'ui-monospace', 'sans-serif'],
+        sans: ['Manrope', 'system-ui', 'sans-serif'],
+        display: ['Manrope', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'hub': '0 0 0 1px rgba(255,255,255,0.06), 0 24px 80px -12px rgba(0,0,0,0.7)',
-        'hub-glow': '0 0 60px -12px rgba(10, 228, 72, 0.35)',
+        'hub': '0 0 0 1px rgba(205,230,242,0.08), 0 24px 80px -12px rgba(0,0,0,0.7)',
+        'hub-glow': '0 0 60px -12px rgba(101, 220, 255, 0.2)',
       },
       backgroundImage: {
         'hub-grid': `
