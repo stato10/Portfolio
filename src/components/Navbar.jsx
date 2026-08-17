@@ -394,7 +394,7 @@ function Navbar() {
                     })
                 })
             })
-    }, [])
+    }, [lenisRef])
 
     const toggleMobileMenu = useCallback(
         (forced) => {

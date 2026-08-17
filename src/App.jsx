@@ -1,85 +1,54 @@
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import About from './pages/About'
-import Contact from './pages/Contact'
-import Blog from './pages/Blog'
-import Post1 from './pages/blog/Post1'
-import Post2 from './pages/blog/Post2'
-import SmoothScroll from './components/SmoothScroll'
-import Preloader from './components/Preloader'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
+import BootScreen from './os/BootScreen'
+import Desktop from './os/Desktop'
+import { projectBySlug } from './data/projects'
+import { OSProvider, useOSStore } from './store/useOSStore'
 
-// Component to handle 404.html redirects
-function RedirectHandler() {
-  const navigate = useNavigate()
-  const location = useLocation()
+function OSExperience() {
+  const [booted, setBooted] = useState(false)
+  const { slug } = useParams()
+  const { closeWindow, openProject } = useOSStore()
+  const routedProjectRef = useRef(null)
+  const finishBoot = useCallback(() => setBooted(true), [])
 
   useEffect(() => {
-    // Check if we have a redirect query parameter (from 404.html)
-    // The 404.html creates URLs like ?/path, which URLSearchParams treats as
-    // an empty parameter name with value 'path'
-    const search = location.search
+    const project = slug ? projectBySlug.get(slug) : null
+    document.title = project ? `${project.title} — STATO OS` : 'STATO OS — Software Engineer / AI Systems Builder'
+    const description = document.querySelector('meta[name="description"]')
+    if (description) description.setAttribute('content', project?.description || 'STATO OS — the interactive portfolio of Avraham Stato, software engineer and AI systems builder.')
+    if (!booted) return
+    if (project) openProject(project.id)
+    if (!project && routedProjectRef.current) closeWindow(`project:${routedProjectRef.current}`, { syncRoute: false })
+    routedProjectRef.current = project?.id || null
+  }, [booted, closeWindow, openProject, slug])
 
-    // Check if query string starts with ?/ (the format from 404.html)
-    if (search.startsWith('?/')) {
-      // Extract the path from ?/path (remove the ?/ prefix)
-      let redirectPath = search.slice(2) // Remove '?/'
+  return (
+    <>
+      <Desktop ready={booted} />
+      {!booted && <BootScreen onComplete={finishBoot} />}
+    </>
+  )
+}
 
-      // Handle query parameters and hash if present
-      // Format: ?/path?query#hash or ?/path#hash
-      const queryIndex = redirectPath.indexOf('?')
-      const hashIndex = redirectPath.indexOf('#')
-
-      if (queryIndex !== -1) {
-        // If there's a query string, extract only the path part
-        redirectPath = redirectPath.slice(0, queryIndex)
-      } else if (hashIndex !== -1) {
-        // If there's a hash, extract only the path part
-        redirectPath = redirectPath.slice(0, hashIndex)
-      }
-
-      if (redirectPath) {
-        // Decode the path (replace ~and~ with &) and navigate
-        const decodedPath = redirectPath.replace(/~and~/g, '&')
-        // Ensure path starts with /
-        const finalPath = decodedPath.startsWith('/') ? decodedPath : '/' + decodedPath
-        navigate(finalPath, { replace: true })
-      }
-    }
-  }, [location, navigate])
-
-  return null
+function RoutedOSProvider({ children }) {
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
+  return <OSProvider navigate={navigate} pathname={pathname}>{children}</OSProvider>
 }
 
 function App() {
   return (
-    <BrowserRouter basename="/portfolio">
-      <SmoothScroll>
-        <Preloader />
-        <RedirectHandler />
-        <div className="hub-page-bg min-h-screen flex flex-col text-text-primary selection:bg-primary selection:text-bg-primary">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/post1" element={<Post1 />} />
-              <Route path="/blog/post2" element={<Post2 />} />
-              <Route path="*" element={<Home />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </SmoothScroll>
+    <BrowserRouter basename="/portfolio" future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <RoutedOSProvider>
+        <Routes>
+          <Route path="/" element={<OSExperience />} />
+          <Route path="/projects/:slug" element={<OSExperience />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </RoutedOSProvider>
     </BrowserRouter>
   )
 }
 
 export default App
-
-
-

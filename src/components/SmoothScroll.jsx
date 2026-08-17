@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 /** Ref to the active Lenis instance so nav / in-app links can call `scrollTo` (window.scrollTo does not move Lenis). */
+// eslint-disable-next-line react-refresh/only-export-components
 export const LenisRefContext = createContext(null)
 
 export default function SmoothScroll({ children }) {
