@@ -53,6 +53,14 @@ function Contact() {
             >
               GitHub
             </a>
+            <a
+              href={profile.contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group px-10 py-5 border border-primary/30 rounded-full font-display tracking-widest uppercase text-text-muted hover:text-primary hover:border-primary transition-all duration-300 hover:bg-primary/10"
+            >
+              LinkedIn
+            </a>
             {profile.contact.email && (
               <a
                 href={`mailto:${profile.contact.email}`}
@@ -75,6 +83,7 @@ function Contact() {
               <span className="text-xs font-sans uppercase tracking-widest text-text-muted">Socials</span>
               <div className="flex justify-center gap-4 text-primary">
                 <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">GitHub</a>
+                <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">LinkedIn</a>
               </div>
             </div>
           </div>

@@ -7,10 +7,10 @@ import perfectDressHero from '../assets/perfect-dress-hero.png'
 const projects = [
   {
     id: 2,
-    title: 'AI INTERVIEW COACH',
+    title: 'INTERVIEW AVATAR AI',
     category: 'AI Application',
-    year: '2025',
-    description: 'A comprehensive interview preparation platform featuring a realistic AI avatar. Candidates can practice with an intelligent coach that provides real-time feedback on answers, body language, and speaking pace.',
+    year: '2026',
+    description: 'An end-to-end AI recruitment platform with real-time voice and vision interaction, CV context injection and live non-verbal feedback.',
     img: 'https://res.cloudinary.com/dpz2lh8hu/image/upload/v1769536830/Screenshot_2026-01-27_195603_jab8yn.png',
     link: 'https://github.com/stato10/interviewAvatar',
     tags: ['React', 'TypeScript', 'TailwindCSS', 'Python', 'FastAPI', 'LiveKit', 'OpenAI GPT-4o'],
@@ -27,13 +27,13 @@ const projects = [
   },
   {
     id: 3,
-    title: 'SOLAR FORECAST',
-    category: 'Machine Learning',
-    year: '2025',
-    description: 'A high-precision machine learning model specifically designed to predict solar energy generation. By analyzing weather patterns and historical data, it helps optimize energy grid management and storage.',
+    title: 'SOLAR INTELLIGENCE PLATFORM',
+    category: 'Full Stack / AI',
+    year: '2025–2026',
+    description: 'A full-stack solar intelligence platform combining a Next.js dashboard, NestJS API, FastAPI analytics engine and integrated solar, weather and geolocation providers.',
     img: 'https://res.cloudinary.com/dpz2lh8hu/image/upload/v1749750619/Screenshot_2025-06-12_154225_fgduws.png',
-    link: 'https://github.com/stato10/solar',
-    tags: ['React', 'TailwindCSS', 'JavaScript', 'HTML', 'CSS', 'Node.js', 'OpenAI'],
+    link: 'https://github.com/stato10/Solar-Intelligence-Platform',
+    tags: ['Next.js', 'NestJS', 'FastAPI', 'PostgreSQL', 'Prisma', 'Docker', 'OpenAI'],
   },
   {
     id: 1,

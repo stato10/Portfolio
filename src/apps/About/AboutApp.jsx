@@ -1,5 +1,5 @@
 import { ArrowUpRight, Code2, Orbit, Workflow } from 'lucide-react'
-import portrait from '../../assets/about_img.png'
+import portrait from '../../assets/stato-portrait.webp'
 import { useOSStore } from '../../store/useOSStore'
 import { experiencePath, profile } from '../../data/experience'
 

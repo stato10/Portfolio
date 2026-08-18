@@ -55,8 +55,8 @@ export const apps = [
     shortLabel: 'About',
     icon: 'user',
     accent: '#65e0d1',
-    defaultSize: { width: 760, height: 540 },
-    minimumSize: { width: 580, height: 430 },
+    defaultSize: { width: 720, height: 500 },
+    minimumSize: { width: 560, height: 420 },
     keywords: ['profile', 'avraham', 'experience'],
   },
   {

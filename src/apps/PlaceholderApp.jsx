@@ -1,5 +1,5 @@
 import { ArrowUpRight, Cpu, FileText, Mail, Sparkles } from 'lucide-react'
-import { experiencePath, profile } from '../data/experience'
+import { profile, resumeHighlights } from '../data/experience'
 import { skillGroups } from '../data/skills'
 
 const content = {
@@ -22,7 +22,7 @@ const content = {
     title: 'Resume',
     summary: profile.experienceNote,
     icon: FileText,
-    items: experiencePath.map((item) => item.label),
+    items: resumeHighlights,
   },
   contact: {
     code: 'COMMS / DIRECT CHANNEL',
@@ -31,7 +31,7 @@ const content = {
       ? `Available for selected product engineering, AI systems and automation engagements from ${profile.location}.`
       : 'Available for selected product engineering, AI systems and automation engagements.',
     icon: Mail,
-    items: [profile.contact.email, profile.contact.githubLabel, profile.location].filter(Boolean),
+    items: [profile.contact.email, profile.contact.phone, profile.contact.linkedinLabel, profile.contact.githubLabel, profile.location].filter(Boolean),
   },
 }
 
@@ -40,6 +40,7 @@ export default function PlaceholderApp({ appId }) {
   const displayItems = appId === 'systems' ? skillGroups.find((group) => group.id === 'systems')?.skills || item.items : item.items
   const Icon = item.icon
   const isContact = appId === 'contact'
+  const isResume = appId === 'resume'
 
   return (
     <div className="placeholder-app">
@@ -50,7 +51,8 @@ export default function PlaceholderApp({ appId }) {
       <ul>{displayItems.map((value, index) => <li key={value}><span>0{index + 1}</span>{value}</li>)}</ul>
       {isContact && profile.contact.email && <a href={`mailto:${profile.contact.email}`}>Open email channel <ArrowUpRight size={16} /></a>}
       {isContact && !profile.contact.email && <a href={profile.contact.github} target="_blank" rel="noreferrer">Open GitHub profile <ArrowUpRight size={16} /></a>}
-      {!isContact && <span className="phase-badge">Phase 1 · Foundation</span>}
+      {isResume && <a href={profile.resumeUrl} target="_blank" rel="noreferrer">Open full resume <ArrowUpRight size={16} /></a>}
+      {!isContact && !isResume && <span className="phase-badge">Phase 1 · Foundation</span>}
     </div>
   )
 }
