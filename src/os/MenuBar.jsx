@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { BatteryMedium, Search, Wifi } from 'lucide-react'
+import { BatteryMedium, CircleUserRound, Search, SlidersHorizontal, Wifi } from 'lucide-react'
 import { useOSStore } from '../store/useOSStore'
 
 const formatTime = () => new Intl.DateTimeFormat('en', {
-  weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false,
+  weekday: 'short', hour: 'numeric', minute: '2-digit', hour12: true,
 }).format(new Date())
 
 export default function MenuBar() {
@@ -23,12 +23,17 @@ export default function MenuBar() {
         <button className="stato-menu" onClick={() => openApp('about')} aria-label="Open About Stato">S</button>
         <strong>{activeWindow?.title || 'STATO OS'}</strong>
         <span className="menu-item">File</span>
+        <span className="menu-item">Edit</span>
         <span className="menu-item">View</span>
+        <span className="menu-item">Window</span>
+        <span className="menu-item">Help</span>
       </div>
       <div className="menu-right" aria-label="System status">
         <button onClick={openSpotlight} aria-label="Open Spotlight search"><Search size={14} /></button>
         <Wifi size={15} />
         <BatteryMedium size={17} />
+        <SlidersHorizontal size={15} />
+        <CircleUserRound size={16} />
         <time>{time}</time>
       </div>
     </header>

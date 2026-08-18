@@ -1,10 +1,10 @@
 export const skillGroups = [
-  { id: 'build', label: 'Build', skills: ['React', 'Next.js', 'TypeScript', 'Vite', 'Tailwind CSS'] },
-  { id: 'backend', label: 'Backend', skills: ['Node.js', 'Express', 'Python', 'Java', 'Spring Boot'] },
-  { id: 'data', label: 'Data', skills: ['PostgreSQL', 'MongoDB', 'SQL', 'Structured JSON'] },
-  { id: 'intelligence', label: 'Intelligence', skills: ['OpenAI', 'Realtime AI', 'LLM integrations', 'LiveKit Agents'] },
-  { id: 'systems', label: 'Systems', skills: ['Linux', 'Windows Server', 'Networking', 'Docker', 'CI/CD'] },
-  { id: 'automation', label: 'Automation', skills: ['Python', 'PowerShell', 'Bash', 'Make.com', 'n8n'] },
+  { id: 'languages', label: 'Languages', skills: ['JavaScript', 'TypeScript', 'Python', 'Java'] },
+  { id: 'build', label: 'Frontend', skills: ['React', 'Next.js', 'HTML / CSS', 'Tailwind CSS'] },
+  { id: 'backend', label: 'Backend & Data', skills: ['Node.js', 'NestJS', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Prisma ORM', 'REST APIs'] },
+  { id: 'intelligence', label: 'AI & Realtime', skills: ['OpenAI API', 'Gemini API', 'LiveKit', 'Cursor', 'Claude Code'] },
+  { id: 'systems', label: 'Cloud & DevOps', skills: ['AWS', 'GCP', 'Docker', 'GitHub Actions', 'Linux'] },
+  { id: 'automation', label: 'Automation', skills: ['Python', 'PowerShell', 'Bash', 'Make.com', 'n8n', 'Zapier'] },
 ]
 
 export const skills = skillGroups.flatMap((group) => group.skills.map((name) => ({ name, group: group.label })))

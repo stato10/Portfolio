@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import emailjs from '@emailjs/browser'
+import { profile } from '../data/experience'
 
 function ContactSection() {
   const sectionRef = useRef(null)
@@ -255,8 +256,8 @@ function ContactSection() {
                   </div>
                   <div className="flex-1">
                     <h4 className="text-text-primary font-semibold mb-1 text-sm uppercase tracking-wider">Email</h4>
-                    <a href="mailto:avrahamstato@example.com" className="text-text-muted hover:text-primary transition-colors text-sm">
-                      statto3@gmail.com
+                    <a href={`mailto:${profile.contact.email}`} className="text-text-muted hover:text-primary transition-colors text-sm">
+                      {profile.contact.email}
                     </a>
                   </div>
                 </div>
@@ -268,8 +269,8 @@ function ContactSection() {
                   </div>
                   <div className="flex-1">
                     <h4 className="text-text-primary font-semibold mb-1 text-sm uppercase tracking-wider">LinkedIn</h4>
-                    <a href="https://www.linkedin.com/in/avrahamstato" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors text-sm">
-                      linkedin.com/in/avrahamstato
+                    <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors text-sm">
+                      {profile.contact.linkedinLabel}
                     </a>
                   </div>
                 </div>
@@ -281,8 +282,8 @@ function ContactSection() {
                   </div>
                   <div className="flex-1">
                     <h4 className="text-text-primary font-semibold mb-1 text-sm uppercase tracking-wider">GitHub</h4>
-                    <a href="https://github.com/stato10" target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors text-sm">
-                      github.com/stato10
+                    <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" className="text-text-muted hover:text-primary transition-colors text-sm">
+                      {profile.contact.githubLabel}
                     </a>
                   </div>
                 </div>
@@ -296,7 +297,7 @@ function ContactSection() {
                 Download my resume to learn more about my experience and skills
               </p>
               <a
-                href="/resume.pdf"
+                href={profile.resumeUrl}
                 download
                 className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-bg-primary rounded-xl font-semibold text-sm uppercase tracking-wider hover:bg-accent hover:shadow-hub-glow transition-all duration-300 w-full justify-center"
               >

@@ -1,6 +1,8 @@
 import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import portrait from '../assets/stato-portrait.webp'
+import { profile } from '../data/experience'
 
 function AboutSection() {
   const root = useRef(null)
@@ -75,7 +77,7 @@ function AboutSection() {
               <span className="block text-primary mt-2">nice to meet you.</span>
             </h2>
             <p className="text-base md:text-lg text-text-muted leading-relaxed mb-10 max-w-2xl md:max-w-none mx-auto md:mx-0">
-              I am passionate about building excellent software that improves the lives of those around me. I specialize in creating software for clients ranging from individuals and small businesses all the way to large enterprise corporations.
+              {profile.experienceNote}
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-8">
               {['Full Stack Development', 'System Architecture', 'Cloud Solutions', 'AI Integration'].map((label) => (
@@ -98,7 +100,7 @@ function AboutSection() {
 
                 <div className="relative aspect-[3/4] w-full min-h-[450px]">
                   <img
-                    src="https://res.cloudinary.com/dpz2lh8hu/image/upload/v1766142442/ChatGPT_Image_Dec_19_2025_12_01_52_PM_g21l3c.png"
+                    src={portrait}
                     alt="Avraham - Full Stack Developer"
                     className="w-full h-full object-cover"
                     style={{

@@ -5,6 +5,7 @@ import { apps } from '../data/apps'
 import { projects } from '../data/projects'
 import { skills } from '../data/skills'
 import { useOSStore } from '../store/useOSStore'
+import { preloadProjectLaunchMedia } from '../motion/projectLaunchMedia'
 
 export default function Spotlight() {
   const [query, setQuery] = useState('')
@@ -20,7 +21,7 @@ export default function Spotlight() {
       .map((app) => ({ id: `app:${app.id}`, type: 'App', title: app.title, subtitle: app.keywords?.slice(0, 2).join(' · '), action: () => openApp(app.id) }))
     const projectResults = projects
       .filter((project) => !term || [project.title, project.shortTitle, project.category, ...project.stack].some((value) => value.toLowerCase().includes(term)))
-      .map((project) => ({ id: `project:${project.id}`, type: 'Project', title: project.title, subtitle: project.category, action: () => launchProject(project.id) }))
+      .map((project) => ({ id: `project:${project.id}`, type: 'Project', title: project.title, subtitle: project.category, project, action: () => launchProject(project.id) }))
     const skillResults = skills
       .filter((skill) => term && skill.name.toLowerCase().includes(term))
       .slice(0, 4)
@@ -46,6 +47,10 @@ export default function Spotlight() {
       window.requestAnimationFrame(() => inputRef.current?.focus())
     }
   }, [spotlightOpen])
+
+  useEffect(() => {
+    if (spotlightOpen) preloadProjectLaunchMedia(results[activeIndex]?.project)
+  }, [activeIndex, results, spotlightOpen])
 
   const chooseResult = (result) => {
     result.action()

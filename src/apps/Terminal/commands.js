@@ -1,4 +1,4 @@
-import { experiencePath, profile } from '../../data/experience'
+import { experiencePath, profile, resumeHighlights } from '../../data/experience'
 import { findProject, projects } from '../../data/projects'
 import { skillGroups } from '../../data/skills'
 
@@ -54,12 +54,14 @@ export const commands = {
     return { lines: [`open: ${target}: project or app not found`, 'Try “ls projects” to inspect available systems.'], tone: 'error' }
   },
   skills: () => ({ lines: skillGroups.flatMap((group) => [`${group.label.toUpperCase()}`, `  ${group.skills.join(' · ')}`]) }),
-  experience: () => ({ lines: [profile.experienceNote, '', ...experiencePath.map((item, index) => `${String(index + 1).padStart(2, '0')}  ${item.label} — ${item.summary}`)] }),
+  experience: () => ({ lines: [profile.experienceNote, '', ...resumeHighlights, '', ...experiencePath.map((item, index) => `${String(index + 1).padStart(2, '0')}  ${item.label} — ${item.summary}`)] }),
   contact: ({ openApp }) => {
     openApp('contact')
     return {
       lines: [
         profile.contact.email ? `Email     ${profile.contact.email}` : 'Email     Available on request',
+        `Phone     ${profile.contact.phone}`,
+        `LinkedIn  ${profile.contact.linkedinLabel}`,
         `GitHub    ${profile.contact.githubLabel}`,
         ...(profile.location ? [`Location  ${profile.location}`] : []),
       ],

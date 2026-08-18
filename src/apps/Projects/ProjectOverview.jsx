@@ -10,8 +10,15 @@ export default function ProjectOverview({ project }) {
           <h2>{project.title}</h2>
           <p>{project.description}</p>
           <div className="case-status"><Activity /><span>{project.status}</span></div>
+          <div className="case-hero-cues" aria-label="Project highlights">
+            {project.stack.slice(0, 3).map((item) => <span key={item}>{item}</span>)}
+          </div>
+          {project.links.github && <a className="case-hero-link" href={project.links.github} target="_blank" rel="noreferrer">View source <ArrowUpRight /></a>}
         </div>
-        <ProjectMedia item={project.media.thumbnail ? { type: 'image', src: project.media.thumbnail, alt: `${project.title} product interface` } : null} title={project.title} priority className="case-hero-media" />
+        <div className="case-hero-visual" data-handoff-target="project-hero" data-project-id={project.id}>
+          <ProjectMedia item={project.media.thumbnail ? { type: 'image', src: project.media.thumbnail, alt: `${project.title} product interface` } : null} title={project.title} priority className="case-hero-media" />
+          <span className="case-hero-signal">{project.capabilities.slice(0, 2).join(' · ')}</span>
+        </div>
       </section>
 
       <div className="case-narrative">

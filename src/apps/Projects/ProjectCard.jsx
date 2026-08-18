@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import ProjectMedia from './ProjectMedia'
+import { preloadProjectLaunchMedia } from '../../motion/projectLaunchMedia'
 
 export default function ProjectCard({ project, index, view, onOpen }) {
   return (
@@ -7,6 +8,8 @@ export default function ProjectCard({ project, index, view, onOpen }) {
       type="button"
       className={`explorer-project-card view-${view}`}
       onClick={() => onOpen(project.id)}
+      onPointerEnter={() => preloadProjectLaunchMedia(project)}
+      onFocus={() => preloadProjectLaunchMedia(project)}
       style={{ '--project-accent': project.accent }}
       aria-label={`Open ${project.title} case study`}
       data-project-card

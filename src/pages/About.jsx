@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import aboutImg from '../assets/about_img.png'
+import aboutImg from '../assets/stato-portrait.webp'
+import { profile } from '../data/experience'
 
 const floatAnimation = {
   initial: { y: 0 },
@@ -92,7 +93,7 @@ function About() {
 
               <div className="absolute bottom-8 left-8 right-8">
                 <p className="font-display text-2xl text-primary">AVRAHAM STATO</p>
-                <p className="font-sans text-sm tracking-widest text-text-muted uppercase">Full Stack Developer</p>
+                <p className="font-sans text-sm tracking-widest text-text-muted uppercase">Software Engineer · AI & Systems Automation</p>
               </div>
             </motion.div>
 
@@ -116,7 +117,7 @@ function About() {
             >
               <h3 className="font-display text-2xl text-primary mb-4">THE JOURNEY</h3>
               <p className="text-text-muted text-lg leading-relaxed font-sans">
-                I specialize in crafting high-performance digital experiences that merge technical precision with artistic direction. My work is driven by a desire to solve complex problems through clean, scalable code and intuitive design.
+                {profile.experienceNote}
               </p>
             </motion.div>
 
@@ -126,15 +127,15 @@ function About() {
                 variants={revealAnimation}
                 className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 backdrop-blur-sm hover:border-primary/30 transition-colors"
               >
-                <span className="block font-display text-4xl text-primary mb-2">3+</span>
-                <span className="text-xs tracking-widest text-text-muted uppercase">Years Experience</span>
+                <span className="block font-display text-4xl text-primary mb-2">2018</span>
+                <span className="text-xs tracking-widest text-text-muted uppercase">Production Systems Since</span>
               </motion.div>
               <motion.div
                 variants={revealAnimation}
                 className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 backdrop-blur-sm hover:border-primary/30 transition-colors"
               >
-                <span className="block font-display text-4xl text-primary mb-2">20+</span>
-                <span className="text-xs tracking-widest text-text-muted uppercase">Projects Shipped</span>
+                <span className="block font-display text-4xl text-primary mb-2">90</span>
+                <span className="text-xs tracking-widest text-text-muted uppercase">Diploma Grade</span>
               </motion.div>
             </div>
 
@@ -163,4 +164,3 @@ function About() {
 }
 
 export default About
-
