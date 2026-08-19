@@ -51,7 +51,8 @@ export default function PlaceholderApp({ appId }) {
       <ul>{displayItems.map((value, index) => <li key={value}><span>0{index + 1}</span>{value}</li>)}</ul>
       {isContact && profile.contact.email && <a href={`mailto:${profile.contact.email}`}>Open email channel <ArrowUpRight size={16} /></a>}
       {isContact && !profile.contact.email && <a href={profile.contact.github} target="_blank" rel="noreferrer">Open GitHub profile <ArrowUpRight size={16} /></a>}
-      {isResume && <a href={profile.resumeUrl} target="_blank" rel="noreferrer">Open full resume <ArrowUpRight size={16} /></a>}
+      {isResume && <a href={profile.resumeUrl} target="_blank" rel="noreferrer">Open resume PDF <ArrowUpRight size={16} /></a>}
+      {isResume && <a href={profile.resumeDocxUrl} download>Download resume DOCX <ArrowUpRight size={16} /></a>}
       {!isContact && !isResume && <span className="phase-badge">Phase 1 · Foundation</span>}
     </div>
   )

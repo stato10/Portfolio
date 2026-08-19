@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { bootTiming } from '../motion/bootAnimations'
+import OSBackdrop from './OSBackdrop'
 
 const bootLines = [
   ['CORE', 'READY'],
@@ -52,6 +53,7 @@ export default function BootScreen({ onComplete }) {
 
   return (
     <div ref={rootRef} className="boot-screen" role="status" aria-live="polite">
+      <OSBackdrop variant="boot" />
       <div className="boot-noise" aria-hidden="true" />
       <div className="boot-panel">
         <div className="boot-mark" data-boot-mark>STATO<span>·</span></div>

@@ -12,6 +12,7 @@ export default function ProjectLaunchTransition() {
   const [failedRequestId, setFailedRequestId] = useState(null)
   const [failedPosterRequestId, setFailedPosterRequestId] = useState(null)
   const [status, setStatus] = useState('Preparing project workspace')
+  const [cinematicProgress, setCinematicProgress] = useState(0)
   const [handoffPending, setHandoffPending] = useState(null)
   const [handoffFrame, setHandoffFrame] = useState(null)
   const { launch, completeProjectLaunch, clearProjectLaunch } = useOSStore()
@@ -29,6 +30,7 @@ export default function ProjectLaunchTransition() {
     if (activeRequestRef.current !== launch.requestId) {
       activeRequestRef.current = launch.requestId
       completedRef.current = false
+      setCinematicProgress(0)
     }
     if (pendingForLaunch) return undefined
 
@@ -72,8 +74,12 @@ export default function ProjectLaunchTransition() {
 
     const openAt = Number.isFinite(launchMedia.openAt) ? Math.max(0, launchMedia.openAt) : null
     const maxDuration = Number.isFinite(launchMedia.maxDuration) ? Math.max(250, launchMedia.maxDuration) : 4500
-    const handleLoadedMetadata = () => setStatus('Cinematic launch ready')
+    const handleLoadedMetadata = () => setStatus('Entering project workspace')
     const handleTimeUpdate = () => {
+      const handoffTime = openAt ?? video.duration
+      if (Number.isFinite(handoffTime) && handoffTime > 0) {
+        setCinematicProgress(Math.min(video.currentTime / handoffTime, 1))
+      }
       if (openAt !== null && video.currentTime >= openAt) finish()
     }
     const handleEnded = () => finish()
@@ -153,8 +159,8 @@ export default function ProjectLaunchTransition() {
     <AnimatePresence>
       {launch && project && (
         <motion.div
-          className={`project-launch${pendingForLaunch ? ' is-handoff' : ''}`}
-          style={{ '--project-accent': launch.accent }}
+          className={`project-launch${cinematic ? ' is-cinematic' : ''}${cinematicProgress > 0.72 ? ' is-near-handoff' : ''}${pendingForLaunch ? ' is-handoff' : ''}`}
+          style={{ '--project-accent': launch.accent, '--launch-progress': cinematic ? Math.max(cinematicProgress, 0.02) : 1 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -162,6 +168,8 @@ export default function ProjectLaunchTransition() {
           role="status"
           aria-live="polite"
           aria-atomic="true"
+          data-project-id={project.id}
+          data-launch-variant={launchMedia.variant || 'default'}
           data-launch-handoff-target={launchMedia.handoff?.target || undefined}
           data-launch-handoff-focal-point={launchMedia.handoff?.focalPoint || undefined}
         >
@@ -183,6 +191,7 @@ export default function ProjectLaunchTransition() {
               <video ref={videoRef} src={launchMedia.video} poster={poster || undefined} muted playsInline preload="metadata" aria-hidden="true" tabIndex={-1} style={{ objectPosition: launchMedia.handoff?.focalPoint }} />
             ) : poster ? <img src={poster} alt="" onError={() => setFailedPosterRequestId(launch.requestId)} style={{ objectPosition: launchMedia.handoff?.focalPoint }} /> : <span className="launch-placeholder" />}
             <div className="launch-scrim" />
+            <div className="launch-signals" aria-hidden="true"><i /><i /><i /></div>
           </motion.div>
           <motion.div className="launch-copy" animate={{ opacity: pendingForLaunch ? 0 : 1 }} transition={{ duration: reduceMotion ? 0.01 : 0.16 }}><span>{status}</span><strong>{project.title}</strong><i><b /></i></motion.div>
         </motion.div>

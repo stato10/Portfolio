@@ -49,7 +49,7 @@ export default function AppWindow({ windowItem, children }) {
       ref={windowRef}
       {...(reduceMotion ? reducedWindowMotion : windowMotion)}
       className={`app-window${active ? ' is-active' : ''}${windowItem.maximized ? ' is-maximized' : ''}`}
-      style={{ left: bounds.x, top: bounds.y, width: bounds.width, height: bounds.height, zIndex: windowItem.zIndex }}
+      style={{ left: bounds.x, top: bounds.y, width: bounds.width, height: bounds.height, zIndex: windowItem.zIndex, '--window-accent': windowItem.accent || '#65dcff' }}
       onPointerDown={() => focusWindow(windowItem.id)}
       aria-label={`${windowItem.title} window`}
     >

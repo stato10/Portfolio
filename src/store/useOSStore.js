@@ -31,6 +31,7 @@ const initialState = {
     id: 'about',
     appId: 'about',
     title: initialApp.title,
+    accent: initialApp.accent,
     bounds: getInitialBounds(initialApp),
     restoreBounds: null,
     minimized: false,
@@ -62,6 +63,7 @@ function reducer(state, action) {
         id: windowId,
         appId: action.app.id,
         title: action.app.title,
+        accent: action.app.accent || '#65dcff',
         projectId: action.projectId || null,
         bounds: getInitialBounds(action.app, (state.windows.length % 4) * 18),
         restoreBounds: null,
@@ -153,6 +155,7 @@ export function OSProvider({ children, navigate, pathname }) {
       app: {
         id: 'project',
         title: project.title,
+        accent: project.accent,
         defaultSize: { width: 980, height: 680 },
       },
       windowId: `project:${project.id}`,

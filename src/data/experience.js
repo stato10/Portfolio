@@ -23,8 +23,8 @@ export const experiencePath = [
 
 export const profile = {
   name: 'Avraham Stato',
-  title: 'Software Engineer | Full Stack | AI & Systems Automation',
-  role: 'Software Engineer / Full Stack & AI Automation',
+  title: 'Junior Software Engineer | Full Stack | AI & Systems Automation',
+  role: 'Junior Software Engineer / Full Stack & AI Automation',
   location: null,
   contact: {
     email: 'statto3@gmail.com',
@@ -37,21 +37,27 @@ export const profile = {
   },
   education: {
     credential: 'Software Engineering Diploma',
-    institution: 'Ort Singalovski College',
+    institution: 'ORT Singalovski College',
     period: '2022–2025',
     grade: '90',
+    academicAverage: '88.54',
+    capstone: 'Play_CV',
+    capstoneGrade: '100',
+    awarded: '27 April 2025',
+    focus: ['Algorithms', 'Data Structures', 'Full-Stack Development', 'Java', 'JavaScript', 'Python'],
   },
   resumeUrl: `${import.meta.env.BASE_URL}resume.pdf`,
-  statement: 'I build production software across full-stack engineering, systems automation and applied AI.',
-  experienceNote: 'I combine a completed Software Engineering diploma with hands-on production experience, evolving from government-scale IT operations into full-stack development, automation and AI-driven systems.',
+  resumeDocxUrl: `${import.meta.env.BASE_URL}Avraham-Stato-CV.docx`,
+  statement: 'I build production software across full-stack engineering, intelligent automation and applied AI.',
+  experienceNote: 'I combine a completed Software Engineering diploma with hands-on experience in full-stack development, AI integration and production automation for government-scale environments.',
 }
 
 export const workExperience = [
   {
     company: 'One Taldor',
-    role: 'Software Developer & Automation Engineer',
+    role: 'Software Engineer & Automation Developer',
     period: '2018–Present',
-    summary: 'Role evolved from IT operations into software development, systems automation and production tooling for nationwide examination environments.',
+    summary: 'Developing internal software, automation pipelines and production tooling alongside nationwide computerized examination infrastructure.',
   },
   {
     company: 'Ivory Computers',
@@ -62,7 +68,8 @@ export const workExperience = [
 ]
 
 export const resumeHighlights = [
-  'Software Developer & Automation Engineer · One Taldor · 2018–Present',
+  'Software Engineer & Automation Developer · One Taldor · 2018–Present',
   'Store Manager · Ivory Computers · 2017–2018',
-  'Software Engineering Diploma · Ort Singalovski College · Grade 90',
+  'Software Engineering Diploma · ORT Singalovski College · 2022–2025',
+  'Academic average 88.54 · Play_CV capstone 100',
 ]
