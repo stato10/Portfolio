@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BatteryMedium, CircleUserRound, Search, SlidersHorizontal, Wifi } from 'lucide-react'
+import { BatteryMedium, CircleUserRound, PanelsTopLeft, Search, SlidersHorizontal, Wifi } from 'lucide-react'
 import { useOSStore } from '../store/useOSStore'
 
 const formatTime = () => new Intl.DateTimeFormat('en', {
@@ -7,7 +7,7 @@ const formatTime = () => new Intl.DateTimeFormat('en', {
 }).format(new Date())
 
 export default function MenuBar() {
-  const { windows, activeWindowId, openApp, openSpotlight } = useOSStore()
+  const { windows, activeWindowId, openApp, openSpotlight, openTaskView } = useOSStore()
   const [time, setTime] = useState(formatTime)
 
   useEffect(() => {
@@ -29,6 +29,7 @@ export default function MenuBar() {
         <span className="menu-item">Help</span>
       </div>
       <div className="menu-right" aria-label="System status">
+        <button onClick={openTaskView} aria-label="Open task view"><PanelsTopLeft size={14} /></button>
         <button onClick={openSpotlight} aria-label="Open Spotlight search"><Search size={14} /></button>
         <Wifi size={15} />
         <BatteryMedium size={17} />

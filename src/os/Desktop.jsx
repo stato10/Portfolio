@@ -7,12 +7,17 @@ import WindowManager from './WindowManager'
 import Spotlight from './Spotlight'
 import ProjectLaunchTransition from './transitions/ProjectLaunchTransition'
 import OSBackdrop from './OSBackdrop'
+import MobileShell from './MobileShell'
+import TaskSwitcher from './TaskSwitcher'
+import OnboardingGuide from './OnboardingGuide'
+import useMobileLayout from '../hooks/useMobileLayout'
 import { profile } from '../data/experience'
 
 export default function Desktop({ ready }) {
   const desktopRef = useRef(null)
   const pointerFrameRef = useRef(null)
   const reduceMotion = useReducedMotion()
+  const mobile = useMobileLayout()
 
   useEffect(() => () => window.cancelAnimationFrame(pointerFrameRef.current), [])
 
@@ -57,18 +62,22 @@ export default function Desktop({ ready }) {
     >
       <OSBackdrop />
       <div className="desktop-atmosphere" aria-hidden="true"><i /><i /><i /></div>
-      <MenuBar />
-      <section className="desktop-identity" aria-label="STATO OS introduction">
-        <p>STATO OS <span>/ 01</span></p>
-        <h1>{profile.role.split(' / ')[0]}<br /><em>{profile.role.split(' / ')[1]}</em></h1>
-        <div className="identity-status"><i /> Available for selected projects {profile.location && <span>{profile.location}</span>}</div>
-      </section>
-      <DesktopIcons />
-      <WindowManager />
+      {mobile ? <MobileShell /> : <>
+        <MenuBar />
+        <section className="desktop-identity" aria-label="STATO OS introduction">
+          <p>STATO OS <span>/ 01</span></p>
+          <h1>{profile.role.split(' / ')[0]}<br /><em>{profile.role.split(' / ')[1]}</em></h1>
+          <div className="identity-status"><i /> Available for selected projects {profile.location && <span>{profile.location}</span>}</div>
+        </section>
+        <DesktopIcons />
+        <WindowManager />
+        <Dock />
+      </>}
       <Spotlight />
+      {!mobile && <TaskSwitcher />}
+      <OnboardingGuide ready={ready} />
       <ProjectLaunchTransition />
-      <Dock />
-      <p className="desktop-coordinate">STATO OS&nbsp;&nbsp; SESSION ACTIVE</p>
+      {!mobile && <p className="desktop-coordinate">STATO OS&nbsp;&nbsp; SESSION ACTIVE</p>}
     </motion.main>
   )
 }

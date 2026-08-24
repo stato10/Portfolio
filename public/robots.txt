@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stato10.github.io/portfolio/sitemap.xml

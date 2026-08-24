@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Boxes, Images, Layers3, UserRound } from 'lucide-react'
-import { projectById } from '../../data/projects'
+import { ArrowLeft, ArrowRight, Boxes, Images, Layers3, UserRound } from 'lucide-react'
+import { projectById, projects } from '../../data/projects'
+import { useOSStore } from '../../store/useOSStore'
 import ProjectArchitecture from './ProjectArchitecture'
 import ProjectMedia from './ProjectMedia'
 import ProjectOverview from './ProjectOverview'
@@ -14,8 +15,17 @@ const tabs = [
 
 export default function ProjectWindow({ windowItem }) {
   const [tab, setTab] = useState('overview')
+  const { closeWindow, launchProject } = useOSStore()
   const project = projectById.get(windowItem.projectId)
   if (!project) return <div className="project-not-found">Project data unavailable.</div>
+  const projectIndex = projects.findIndex((item) => item.id === project.id)
+  const previousProject = projects[(projectIndex - 1 + projects.length) % projects.length]
+  const nextProject = projects[(projectIndex + 1) % projects.length]
+
+  const openAdjacentProject = (projectId) => {
+    closeWindow(windowItem.id, { syncRoute: false })
+    launchProject(projectId, { standardDuration: 420 })
+  }
 
   return (
     <div className="project-case-app">
@@ -25,7 +35,7 @@ export default function ProjectWindow({ windowItem }) {
         <nav aria-label={`${project.title} sections`}>
           {tabs.map((item) => {
             const Icon = item.icon
-            return <button key={item.id} type="button" className={tab === item.id ? 'is-selected' : ''} onClick={() => setTab(item.id)}><Icon /><span>{item.label}</span></button>
+            return <button key={item.id} type="button" className={tab === item.id ? 'is-selected' : ''} aria-current={tab === item.id ? 'page' : undefined} onClick={() => setTab(item.id)}><Icon /><span>{item.label}</span></button>
           })}
         </nav>
         <footer><span>{project.status}</span><small>{project.year}</small></footer>
@@ -40,6 +50,11 @@ export default function ProjectWindow({ windowItem }) {
         {tab === 'stack' && (
           <div className="project-stack-tab"><header><span className="app-kicker">ENGINEERING RECORD</span><h2>Stack & role</h2></header><section><div><span>Technology</span>{project.stack.map((item) => <p key={item}>{item}</p>)}</div><div><span>My role</span>{project.role.map((item) => <p key={item}>{item}</p>)}</div></section></div>
         )}
+        <nav className="case-project-switcher" aria-label="Browse case studies">
+          <button type="button" onClick={() => openAdjacentProject(previousProject.id)}><ArrowLeft /><span><small>Previous case</small><strong>{previousProject.shortTitle}</strong></span></button>
+          <p>{String(projectIndex + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</p>
+          <button type="button" onClick={() => openAdjacentProject(nextProject.id)}><span><small>Next case</small><strong>{nextProject.shortTitle}</strong></span><ArrowRight /></button>
+        </nav>
       </main>
     </div>
   )

@@ -5,7 +5,19 @@ import AppIcon from './AppIcon'
 const dockApps = apps.filter((app) => ['projects', 'terminal', 'ai-lab', 'systems', 'about', 'contact', 'github'].includes(app.id))
 
 export default function Dock() {
-  const { windows, activeWindowId, openApp } = useOSStore()
+  const { windows, activeWindowId, focusWindow, minimizeWindow, openApp } = useOSStore()
+
+  const activate = (app, windowItem, active) => {
+    if (!windowItem) {
+      openApp(app.id)
+      return
+    }
+    if (active) {
+      minimizeWindow(windowItem.id)
+      return
+    }
+    focusWindow(windowItem.id)
+  }
 
   return (
     <nav className="dock" aria-label="Application dock">
@@ -17,8 +29,8 @@ export default function Dock() {
             type="button"
             key={app.id}
             className={`dock-item${active ? ' is-active' : ''}`}
-            onClick={() => openApp(app.id)}
-            aria-label={`Open ${app.title}`}
+            onClick={() => activate(app, windowItem, active)}
+            aria-label={active ? `Minimize ${app.title}` : windowItem ? `Restore ${app.title}` : `Open ${app.title}`}
             title={app.title}
           >
             <span className="dock-tooltip">{app.shortLabel}</span>

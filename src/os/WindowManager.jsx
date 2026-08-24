@@ -13,7 +13,7 @@ function AppContent({ windowItem }) {
   )
 }
 
-export default function WindowManager() {
+export default function WindowManager({ activeOnly = false }) {
   const { windows, setWindowBounds, activeWindowId, closeWindow, spotlightOpen, closeSpotlight, launch } = useOSStore()
   const windowsRef = useRef(windows)
 
@@ -55,7 +55,7 @@ export default function WindowManager() {
   return (
     <div className="window-layer">
       <AnimatePresence>
-        {windows.filter((windowItem) => !windowItem.minimized).map((windowItem) => (
+        {windows.filter((windowItem) => !windowItem.minimized && (!activeOnly || windowItem.id === activeWindowId)).map((windowItem) => (
           <AppWindow key={windowItem.id} windowItem={windowItem}>
             <AppContent windowItem={windowItem} />
           </AppWindow>

@@ -31,4 +31,7 @@ dist-ssr
 # Hero video often exceeds GitHub's 100MB limit — keep locally or use VITE_HERO_VIDEO URL (see public/videos/README.md)
 public/videos/hero-video.mp4
 
+# Local generated artifacts and temporary QA output
+artifacts/
+tmp/
 

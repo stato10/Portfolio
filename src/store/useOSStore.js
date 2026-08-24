@@ -10,6 +10,8 @@ const viewportBounds = () => ({
   height: typeof window === 'undefined' ? 800 : window.innerHeight,
 })
 
+const startsInMobileHome = () => typeof window !== 'undefined' && window.matchMedia('(max-width: 760px)').matches
+
 function getInitialBounds(app, offset = 0) {
   const viewport = viewportBounds()
   const width = Math.min(app.defaultSize?.width || 680, viewport.width - 24)
@@ -25,23 +27,14 @@ function getInitialBounds(app, offset = 0) {
   }
 }
 
-const initialApp = appById.get('about')
 const initialState = {
-  windows: [{
-    id: 'about',
-    appId: 'about',
-    title: initialApp.title,
-    accent: initialApp.accent,
-    bounds: getInitialBounds(initialApp),
-    restoreBounds: null,
-    minimized: false,
-    maximized: false,
-    zIndex: 10,
-  }],
-  activeWindowId: 'about',
-  nextZ: 11,
+  windows: [],
+  activeWindowId: null,
+  nextZ: 10,
   launch: null,
   spotlightOpen: false,
+  taskViewOpen: false,
+  mobileView: startsInMobileHome() ? 'home' : 'app',
 }
 
 function reducer(state, action) {
@@ -57,6 +50,8 @@ function reducer(state, action) {
             : windowItem),
           activeWindowId: existing.id,
           nextZ: state.nextZ + 1,
+          mobileView: 'app',
+          taskViewOpen: false,
         }
       }
       const windowItem = {
@@ -76,12 +71,14 @@ function reducer(state, action) {
         windows: [...state.windows, windowItem],
         activeWindowId: windowItem.id,
         nextZ: state.nextZ + 1,
+        mobileView: 'app',
+        taskViewOpen: false,
       }
     }
     case 'CLOSE': {
       const windows = state.windows.filter((windowItem) => windowItem.id !== action.id)
       const topWindow = windows.filter((item) => !item.minimized).sort((a, b) => b.zIndex - a.zIndex)[0]
-      return { ...state, windows, activeWindowId: topWindow?.id || null }
+      return { ...state, windows, activeWindowId: topWindow?.id || null, mobileView: topWindow ? state.mobileView : 'home' }
     }
     case 'FOCUS':
       if (state.activeWindowId === action.id && !state.windows.find((item) => item.id === action.id)?.minimized) return state
@@ -92,6 +89,8 @@ function reducer(state, action) {
           : windowItem),
         activeWindowId: action.id,
         nextZ: state.nextZ + 1,
+        mobileView: 'app',
+        taskViewOpen: false,
       }
     case 'MINIMIZE': {
       const remaining = state.windows
@@ -129,6 +128,10 @@ function reducer(state, action) {
       return { ...state, launch: null }
     case 'SET_SPOTLIGHT':
       return { ...state, spotlightOpen: action.open }
+    case 'SET_TASK_VIEW':
+      return { ...state, taskViewOpen: action.open }
+    case 'SET_MOBILE_VIEW':
+      return { ...state, mobileView: action.view, taskViewOpen: false, spotlightOpen: false }
     default:
       return state
   }
@@ -137,7 +140,7 @@ function reducer(state, action) {
 export function OSProvider({ children, navigate, pathname }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const launchSequence = useRef(0)
-  const openApp = useCallback((appId) => {
+  const openApp = useCallback((appId, options = {}) => {
     const app = appById.get(appId)
     if (!app) return
     if (app.externalUrl) {
@@ -145,7 +148,8 @@ export function OSProvider({ children, navigate, pathname }) {
       return
     }
     dispatch({ type: 'OPEN', app })
-  }, [])
+    if (options.syncRoute !== false && app.route && pathname !== app.route) navigate(app.route)
+  }, [navigate, pathname])
 
   const openProject = useCallback((projectId) => {
     const project = projectById.get(projectId)
@@ -202,19 +206,33 @@ export function OSProvider({ children, navigate, pathname }) {
 
   const closeWindow = useCallback((id, options = {}) => {
     dispatch({ type: 'CLOSE', id })
-    if (options.syncRoute === false || !id.startsWith('project:')) return
-    const project = projectById.get(id.slice('project:'.length))
-    if (project && pathname === routeForProject(project)) navigate('/')
+    if (options.syncRoute === false) return
+    if (id.startsWith('project:')) {
+      const project = projectById.get(id.slice('project:'.length))
+      if (project && pathname === routeForProject(project)) navigate('/')
+      return
+    }
+    const app = appById.get(id)
+    if (app?.route && pathname === app.route) navigate('/')
   }, [navigate, pathname, routeForProject])
 
   const focusWindow = useCallback((id) => {
     dispatch({ type: 'FOCUS', id })
-    if (!id.startsWith('project:')) return
-    const project = projectById.get(id.slice('project:'.length))
-    if (!project) return
-    const target = routeForProject(project)
-    if (pathname !== target) navigate(target)
+    if (id.startsWith('project:')) {
+      const project = projectById.get(id.slice('project:'.length))
+      if (!project) return
+      const target = routeForProject(project)
+      if (pathname !== target) navigate(target)
+      return
+    }
+    const app = appById.get(id)
+    if (app?.route && pathname !== app.route) navigate(app.route)
   }, [navigate, pathname, routeForProject])
+
+  const showMobileHome = useCallback(() => {
+    dispatch({ type: 'SET_MOBILE_VIEW', view: 'home' })
+    if (pathname !== '/') navigate('/')
+  }, [navigate, pathname])
 
   const actions = useMemo(() => ({
     openApp,
@@ -224,12 +242,18 @@ export function OSProvider({ children, navigate, pathname }) {
     clearProjectLaunch,
     openSpotlight: () => dispatch({ type: 'SET_SPOTLIGHT', open: true }),
     closeSpotlight: () => dispatch({ type: 'SET_SPOTLIGHT', open: false }),
+    openTaskView: () => dispatch({ type: 'SET_TASK_VIEW', open: true }),
+    closeTaskView: () => dispatch({ type: 'SET_TASK_VIEW', open: false }),
+    showMobileHome,
+    showMobileDrawer: () => dispatch({ type: 'SET_MOBILE_VIEW', view: 'drawer' }),
+    showMobileRecents: () => dispatch({ type: 'SET_MOBILE_VIEW', view: 'recents' }),
+    showMobileApp: () => dispatch({ type: 'SET_MOBILE_VIEW', view: 'app' }),
     closeWindow,
     focusWindow,
     minimizeWindow: (id) => dispatch({ type: 'MINIMIZE', id }),
     toggleMaximize: (id) => dispatch({ type: 'TOGGLE_MAXIMIZE', id }),
     setWindowBounds: (id, bounds) => dispatch({ type: 'SET_BOUNDS', id, bounds }),
-  }), [clearProjectLaunch, closeWindow, completeProjectLaunch, focusWindow, launchProject, openApp, openProject])
+  }), [clearProjectLaunch, closeWindow, completeProjectLaunch, focusWindow, launchProject, openApp, openProject, showMobileHome])
 
   const value = useMemo(() => ({ ...state, ...actions }), [state, actions])
   return createElement(OSContext.Provider, { value }, children)
