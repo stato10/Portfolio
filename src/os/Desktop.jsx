@@ -10,6 +10,7 @@ import OSBackdrop from './OSBackdrop'
 import MobileShell from './MobileShell'
 import TaskSwitcher from './TaskSwitcher'
 import OnboardingGuide from './OnboardingGuide'
+import CinematicShowcase from './CinematicShowcase'
 import useMobileLayout from '../hooks/useMobileLayout'
 import { profile } from '../data/experience'
 
@@ -68,6 +69,7 @@ export default function Desktop({ ready }) {
           <p>STATO OS <span>/ 01</span></p>
           <h1>{profile.role.split(' / ')[0]}<br /><em>{profile.role.split(' / ')[1]}</em></h1>
           <div className="identity-status"><i /> Available for selected projects {profile.location && <span>{profile.location}</span>}</div>
+          <CinematicShowcase />
         </section>
         <DesktopIcons />
         <WindowManager />
