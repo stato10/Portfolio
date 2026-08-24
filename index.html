@@ -4,6 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <title>STATO OS — Software Engineer / AI Systems Builder</title>
+
+    <!-- Restore client-side routes redirected by GitHub Pages' 404 fallback. -->
+    <script>
+      (function restoreGitHubPagesRoute(location) {
+        if (location.search.charAt(1) !== '/') return;
+
+        var route = location.search
+          .slice(1)
+          .split('&')
+          .map(function decodeRoutePart(part) {
+            return part.replace(/~and~/g, '&');
+          })
+          .join('?');
+
+        window.history.replaceState(
+          null,
+          '',
+          location.pathname.slice(0, -1) + route + location.hash,
+        );
+      })(window.location);
+    </script>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="STATO OS — the interactive portfolio of Avraham Stato, software engineer and AI systems builder.">
