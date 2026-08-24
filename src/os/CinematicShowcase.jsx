@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Pause, Play, RotateCcw, Volume2, VolumeX, X } from 'lucide-react'
 
 const cinematicVideo = `${import.meta.env.BASE_URL}videos/stato-cinematic.mp4`
@@ -19,37 +19,41 @@ export default function CinematicShowcase({ compact = false }) {
   const reduceMotion = useReducedMotion()
   const [open, setOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
-  const [muted, setMuted] = useState(true)
+  const [muted, setMuted] = useState(false)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const [ended, setEnded] = useState(false)
 
   useEffect(() => {
     if (!open) return undefined
-    const activeVideo = videoRef.current
 
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') setOpen(false)
+      if (event.key === 'Escape') {
+        videoRef.current?.pause()
+        setPlaying(false)
+        setOpen(false)
+      }
     }
 
-    const frame = window.requestAnimationFrame(() => {
-      closeButtonRef.current?.focus()
-      activeVideo?.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
-    })
-
+    const frame = window.requestAnimationFrame(() => closeButtonRef.current?.focus())
     document.addEventListener('keydown', handleKeyDown)
     return () => {
       window.cancelAnimationFrame(frame)
       document.removeEventListener('keydown', handleKeyDown)
-      activeVideo?.pause()
     }
   }, [open])
 
   const openPlayer = () => {
-    setMuted(true)
+    const video = videoRef.current
+    setMuted(false)
     setCurrentTime(0)
     setEnded(false)
     setOpen(true)
+    if (video) {
+      video.currentTime = 0
+      video.muted = false
+      video.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
+    }
   }
 
   const closePlayer = () => {
@@ -94,24 +98,26 @@ export default function CinematicShowcase({ compact = false }) {
   }
 
   const player = (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          className="cinematic-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label="STATO cinematic motion study"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: reduceMotion ? 0.01 : 0.28 }}
-          onMouseDown={(event) => event.target === event.currentTarget && closePlayer()}
-        >
+    <motion.div
+      className="cinematic-overlay"
+      role={open ? 'dialog' : undefined}
+      aria-modal={open ? 'true' : undefined}
+      aria-label={open ? 'STATO cinematic motion study' : undefined}
+      aria-hidden={!open}
+      inert={open ? undefined : ''}
+      initial={false}
+      animate={open
+        ? { opacity: 1, visibility: 'visible', pointerEvents: 'auto' }
+        : { opacity: 0, visibility: 'hidden', pointerEvents: 'none' }}
+      transition={{ duration: reduceMotion ? 0.01 : 0.28 }}
+      onMouseDown={(event) => event.target === event.currentTarget && closePlayer()}
+    >
           <motion.section
             className="cinematic-player"
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 24, scale: reduceMotion ? 1 : 0.975 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: reduceMotion ? 0 : 14, scale: reduceMotion ? 1 : 0.985 }}
+            initial={false}
+            animate={open
+              ? { opacity: 1, y: 0, scale: 1 }
+              : { opacity: 0, y: reduceMotion ? 0 : 18, scale: reduceMotion ? 1 : 0.98 }}
             transition={{ duration: reduceMotion ? 0.01 : 0.42, ease: [0.16, 1, 0.3, 1] }}
           >
             <header>
@@ -150,16 +156,14 @@ export default function CinematicShowcase({ compact = false }) {
               <button type="button" onClick={toggleSound} aria-label={muted ? 'Turn film sound on' : 'Mute film sound'} aria-pressed={!muted}>{muted ? <VolumeX /> : <Volume2 />}</button>
             </footer>
           </motion.section>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    </motion.div>
   )
 
   return (
     <>
       <button className={`cinematic-card${compact ? ' is-compact' : ''}`} type="button" onClick={openPlayer} aria-haspopup="dialog">
         <span className="cinematic-card-media"><img src={cinematicPoster} alt="Cinematic AI motion study preview" /><i><Play /></i></span>
-        <span className="cinematic-card-copy"><small>FEATURED MOTION STUDY</small><strong>Watch the cinematic reel</strong><em>00:05 · sound optional</em></span>
+        <span className="cinematic-card-copy"><small>FEATURED MOTION STUDY</small><strong>Watch the cinematic reel</strong><em>00:05 · sound on</em></span>
         <span className="cinematic-card-action"><Play /></span>
       </button>
       {typeof document !== 'undefined' && createPortal(player, document.body)}
