@@ -21,7 +21,7 @@ const writeSession = (value) => {
   try { window.sessionStorage.setItem(storageKey, value === 'done' ? value : JSON.stringify(value)) } catch { /* Session persistence is optional. */ }
 }
 
-export default function OnboardingGuide({ ready }) {
+export default function OnboardingGuide({ ready, startCollapsed = false }) {
   const [status, setStatus] = useState('hidden')
   const [step, setStep] = useState(0)
   const { launchProject, openApp } = useOSStore()
@@ -35,9 +35,9 @@ export default function OnboardingGuide({ ready }) {
       setStatus(saved.status === 'collapsed' ? 'collapsed' : 'open')
       return undefined
     }
-    const timer = window.setTimeout(() => setStatus('open'), 650)
+    const timer = window.setTimeout(() => setStatus(startCollapsed ? 'collapsed' : 'open'), 650)
     return () => window.clearTimeout(timer)
-  }, [ready])
+  }, [ready, startCollapsed])
 
   useEffect(() => {
     if (status === 'open' || status === 'collapsed') writeSession({ status, step })

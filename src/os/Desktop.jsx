@@ -77,7 +77,7 @@ export default function Desktop({ ready }) {
       </>}
       <Spotlight />
       {!mobile && <TaskSwitcher />}
-      <OnboardingGuide ready={ready} />
+      <OnboardingGuide ready={ready} startCollapsed={mobile} />
       <ProjectLaunchTransition />
       {!mobile && <p className="desktop-coordinate">STATO OS&nbsp;&nbsp; SESSION ACTIVE</p>}
     </motion.main>
