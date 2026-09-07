@@ -9,16 +9,28 @@ import ProjectLaunchTransition from './transitions/ProjectLaunchTransition'
 import OSBackdrop from './OSBackdrop'
 import MobileShell from './MobileShell'
 import TaskSwitcher from './TaskSwitcher'
-import OnboardingGuide from './OnboardingGuide'
-import CinematicShowcase from './CinematicShowcase'
 import useMobileLayout from '../hooks/useMobileLayout'
-import { profile } from '../data/experience'
+import { useOSStore } from '../store/useOSStore'
+import { useLocation } from 'react-router-dom'
 
 export default function Desktop({ ready }) {
   const desktopRef = useRef(null)
   const pointerFrameRef = useRef(null)
   const reduceMotion = useReducedMotion()
   const mobile = useMobileLayout()
+  const { openApp } = useOSStore()
+  const { pathname } = useLocation()
+  const welcomed = useRef(false)
+
+  useEffect(() => {
+    if (!ready || mobile || welcomed.current || pathname !== '/') return
+    welcomed.current = true
+    try {
+      if (sessionStorage.getItem('stato-welcome-macos')) return
+      sessionStorage.setItem('stato-welcome-macos', 'seen')
+    } catch { /* The desktop works without browser storage. */ }
+    openApp('welcome', { syncRoute: false })
+  }, [ready, mobile, openApp, pathname])
 
   useEffect(() => () => window.cancelAnimationFrame(pointerFrameRef.current), [])
 
@@ -56,30 +68,21 @@ export default function Desktop({ ready }) {
       className="os-desktop"
       initial={false}
       animate={{ opacity: ready ? 1 : 0.65, scale: ready ? 1 : 1.012 }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
       aria-hidden={!ready}
       onPointerMove={updateLightfield}
       onPointerLeave={resetLightfield}
     >
       <OSBackdrop />
-      <div className="desktop-atmosphere" aria-hidden="true"><i /><i /><i /></div>
       {mobile ? <MobileShell /> : <>
         <MenuBar />
-        <section className="desktop-identity" aria-label="STATO OS introduction">
-          <p>STATO OS <span>/ 01</span></p>
-          <h1>{profile.role.split(' / ')[0]}<br /><em>{profile.role.split(' / ')[1]}</em></h1>
-          <div className="identity-status"><i /> Available for selected projects {profile.location && <span>{profile.location}</span>}</div>
-          <CinematicShowcase />
-        </section>
         <DesktopIcons />
         <WindowManager />
         <Dock />
       </>}
       <Spotlight />
       {!mobile && <TaskSwitcher />}
-      <OnboardingGuide ready={ready} startCollapsed={mobile} />
       <ProjectLaunchTransition />
-      {!mobile && <p className="desktop-coordinate">STATO OS&nbsp;&nbsp; SESSION ACTIVE</p>}
     </motion.main>
   )
 }

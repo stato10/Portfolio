@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BatteryMedium, CircleUserRound, PanelsTopLeft, Search, SlidersHorizontal, Wifi } from 'lucide-react'
+import { Monitor, PanelsTopLeft, Search } from 'lucide-react'
 import { useOSStore } from '../store/useOSStore'
 
 const formatTime = () => new Intl.DateTimeFormat('en', {
@@ -7,7 +7,7 @@ const formatTime = () => new Intl.DateTimeFormat('en', {
 }).format(new Date())
 
 export default function MenuBar() {
-  const { windows, activeWindowId, openApp, openSpotlight, openTaskView } = useOSStore()
+  const { windows, activeWindowId, openApp, openSpotlight, openTaskView, minimizeWindow } = useOSStore()
   const [time, setTime] = useState(formatTime)
 
   useEffect(() => {
@@ -20,21 +20,19 @@ export default function MenuBar() {
   return (
     <header className="menu-bar">
       <div className="menu-left">
-        <button className="stato-menu" onClick={() => openApp('about')} aria-label="Open About Stato">S</button>
+        <button className="stato-menu" onClick={() => openApp('welcome')} aria-label="Open Welcome">S</button>
         <strong>{activeWindow?.title || 'STATO OS'}</strong>
-        <span className="menu-item">File</span>
-        <span className="menu-item">Edit</span>
-        <span className="menu-item">View</span>
-        <span className="menu-item">Window</span>
-        <span className="menu-item">Help</span>
+        <nav className="menu-links" aria-label="Portfolio shortcuts">
+          <button type="button" onClick={() => openApp('projects')}>Work</button>
+          <button type="button" onClick={() => openApp('resume')}>Resume</button>
+          <button type="button" onClick={() => openApp('contact')}>Contact</button>
+          <button type="button" onClick={() => openApp('welcome')}>Help</button>
+        </nav>
       </div>
       <div className="menu-right" aria-label="System status">
         <button onClick={openTaskView} aria-label="Open task view"><PanelsTopLeft size={14} /></button>
         <button onClick={openSpotlight} aria-label="Open Spotlight search"><Search size={14} /></button>
-        <Wifi size={15} />
-        <BatteryMedium size={17} />
-        <SlidersHorizontal size={15} />
-        <CircleUserRound size={16} />
+        <button onClick={() => windows.filter((item) => !item.minimized).forEach((item) => minimizeWindow(item.id))} disabled={!windows.some((item) => !item.minimized)} aria-label="Show desktop" title="Show desktop — keep applications open"><Monitor size={15} /></button>
         <time>{time}</time>
       </div>
     </header>

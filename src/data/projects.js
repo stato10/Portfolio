@@ -112,7 +112,7 @@ export const projects = [
       poster: projectMedia.playCv,
       handoffBackground: '#080817',
       launch: {
-        video: publicAsset('videos/projects/play-cv/play-cv-launch.mp4'),
+        video: null,
         poster: projectMedia.playCv,
         fallbackPoster: projectMedia.playCv,
         mode: 'standard',

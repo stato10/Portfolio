@@ -168,7 +168,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .cinematic-player > header button { flex: none; width: 30px; height: 30px; border-radius: 8px; }
 .cinematic-player button:hover { border-color: rgba(219,235,245,.11); color: #f0f7f9; background: rgba(219,235,245,.065); }
 .cinematic-player button svg { width: 14px; }
-.cinematic-stage { position: relative; min-height: 0; aspect-ratio: 16/9; display: grid; place-items: center; overflow: hidden; background: #010204; }
+.cinematic-stage { position: relative; min-width: 0; min-height: 0; display: grid; place-items: center; overflow: hidden; background: #010204; }
+.cinematic-player { height: min(100%, calc(56.25vw + 112px)); }
 .cinematic-stage video { width: 100%; height: 100%; display: block; object-fit: contain; background: #010204; }
 .cinematic-vignette { position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 110px rgba(0,0,0,.22); background: linear-gradient(180deg,rgba(0,0,0,.1),transparent 18%,transparent 82%,rgba(0,0,0,.16)); }
 .cinematic-replay { position: absolute; z-index: 2; min-height: 42px; display: flex !important; grid-auto-flow: column; gap: 8px; padding: 0 14px !important; border-color: rgba(255,255,255,.22) !important; border-radius: 999px; color: white !important; background: rgba(5,9,13,.7) !important; box-shadow: 0 16px 45px rgba(0,0,0,.42); backdrop-filter: blur(14px); font-size: 12px; }

@@ -107,7 +107,8 @@ function getRootItems(appId) {
 }
 
 function FileGlyph({ item }) {
-  if (item.thumbnail) return <img src={item.thumbnail} alt="" />
+  const [failedSrc, setFailedSrc] = useState(null)
+  if (item.thumbnail && failedSrc !== item.thumbnail) return <img src={item.thumbnail} alt="" onError={() => setFailedSrc(item.thumbnail)} />
   if (item.type === 'folder') return <Folder aria-hidden="true" />
   if (item.type === 'project') return <FolderKanban aria-hidden="true" />
   if (item.type === 'skill') return <FileCode2 aria-hidden="true" />
@@ -120,11 +121,15 @@ export default function FileExplorerApp({ appId }) {
   const [query, setQuery] = useState('')
   const [view, setView] = useState('grid')
   const [selectedId, setSelectedId] = useState(null)
+  const [category, setCategory] = useState('All')
   const meta = folderMeta[appId] || folderMeta.projects
   const RootIcon = meta.icon
   const rootItems = useMemo(() => getRootItems(appId), [appId])
   const items = currentFolder?.children || rootItems
-  const visibleItems = items.filter((item) => `${item.name} ${item.typeLabel} ${item.detail}`.toLowerCase().includes(query.trim().toLowerCase()))
+  const categories = ['All', ...new Set(items.filter((item) => item.project).map((item) => item.project.category))]
+  const visibleItems = items.filter((item) =>
+    (category === 'All' || item.project?.category === category) &&
+    `${item.name} ${item.typeLabel} ${item.detail} ${item.project?.stack.join(' ') || ''}`.toLowerCase().includes(query.trim().toLowerCase()))
   const selectedItem = items.find((item) => item.id === selectedId)
 
   const openItem = (item) => {
@@ -145,6 +150,7 @@ export default function FileExplorerApp({ appId }) {
     setCurrentFolder(null)
     setSelectedId(null)
     setQuery('')
+    setCategory('All')
   }
 
   return (
@@ -164,8 +170,8 @@ export default function FileExplorerApp({ appId }) {
           <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${currentFolder?.name || meta.label}`} aria-label={`Search ${meta.label}`} />
         </label>
         <div className="portfolio-view-toggle" aria-label="Library view">
-          <button type="button" className={view === 'grid' ? 'is-active' : ''} onClick={() => setView('grid')} aria-label="Grid view"><Grid2X2 /></button>
-          <button type="button" className={view === 'list' ? 'is-active' : ''} onClick={() => setView('list')} aria-label="List view"><List /></button>
+          <button type="button" className={view === 'grid' ? 'is-active' : ''} onClick={() => setView('grid')} aria-pressed={view === 'grid'} aria-label="Grid view"><Grid2X2 /></button>
+          <button type="button" className={view === 'list' ? 'is-active' : ''} onClick={() => setView('list')} aria-pressed={view === 'list'} aria-label="List view"><List /></button>
         </div>
       </header>
 
@@ -191,15 +197,18 @@ export default function FileExplorerApp({ appId }) {
         <main className="file-surface">
           <header className="portfolio-library-heading">
             <div>
-              <span className="app-kicker">CURATED WORK / {String(visibleItems.length).padStart(2, '0')}</span>
               <h2>{currentFolder?.name || meta.label}</h2>
               <p>{currentFolder?.detail || meta.detail}</p>
             </div>
             <dl><div><dt>Collection</dt><dd>{meta.label}</dd></div><div><dt>Updated</dt><dd>2026</dd></div></dl>
           </header>
 
+          {categories.length > 1 && <nav className="portfolio-filters" aria-label="Filter projects by category">
+            {categories.map((item) => <button key={item} type="button" aria-pressed={category === item} onClick={() => setCategory(item)}>{item}<span>{item === 'All' ? items.length : items.filter((entry) => entry.project?.category === item).length}</span></button>)}
+          </nav>}
+
           <section className={`portfolio-items portfolio-items-${view}`} aria-label={`${meta.label} records`}>
-            {visibleItems.map((item, index) => {
+            {visibleItems.map((item) => {
               const canOpen = Boolean(item.children || item.project || item.url)
               return (
                 <article
@@ -211,14 +220,12 @@ export default function FileExplorerApp({ appId }) {
                   <button
                     type="button"
                     className="portfolio-item-select"
-                    onClick={() => setSelectedId(item.id)}
-                    onDoubleClick={() => openItem(item)}
+                    onClick={() => { setSelectedId(item.id); openItem(item) }}
                     onFocus={() => item.project && preloadProjectLaunchMedia(item.project)}
-                    aria-label={`Select ${item.name}`}
+                    aria-label={`${canOpen ? 'Open' : 'Select'} ${item.name}`}
                   >
                     <span className={`portfolio-item-media is-${item.type}`}>
                       <FileGlyph item={item} />
-                      <span className="portfolio-item-index">{String(index + 1).padStart(2, '0')}</span>
                       {item.download ? <Download className="file-download-mark" /> : null}
                     </span>
                     <span className="portfolio-item-copy">
@@ -235,14 +242,14 @@ export default function FileExplorerApp({ appId }) {
                 </article>
               )
             })}
-            {visibleItems.length === 0 ? <div className="file-empty"><Search /><strong>No files found</strong><span>Try a different search term.</span></div> : null}
+            {visibleItems.length === 0 ? <div className="file-empty"><Search /><strong>No matching projects</strong><span>Try another technology or reset your filters.</span><button type="button" onClick={() => { setQuery(''); setCategory('All') }}>Reset filters</button></div> : null}
           </section>
         </main>
       </div>
 
       <footer className="portfolio-browser-status">
-        <span><Layers3 />{visibleItems.length} records</span>
-        <span>{selectedItem ? `Selected: ${selectedItem.name}` : 'Select a record or use Open to view the full case study'}</span>
+        <span role="status"><Layers3 />{visibleItems.length} records</span>
+        <span>{selectedItem ? `Selected: ${selectedItem.name}` : 'Open a project to explore its full case study'}</span>
       </footer>
     </div>
   )

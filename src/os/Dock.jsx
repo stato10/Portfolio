@@ -2,7 +2,7 @@ import { apps } from '../data/apps'
 import { useOSStore } from '../store/useOSStore'
 import AppIcon from './AppIcon'
 
-const dockApps = apps.filter((app) => ['projects', 'terminal', 'ai-lab', 'systems', 'about', 'contact', 'github'].includes(app.id))
+const dockApps = apps.filter((app) => ['projects', 'terminal', 'ai-lab', 'systems', 'resume', 'about', 'contact', 'github'].includes(app.id))
 
 export default function Dock() {
   const { windows, activeWindowId, focusWindow, minimizeWindow, openApp } = useOSStore()

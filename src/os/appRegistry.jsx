@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 
 const TerminalApp = lazy(() => import('../apps/Terminal/TerminalApp'))
+const WelcomeApp = lazy(() => import('./WelcomeApp'))
 const FileExplorerApp = lazy(() => import('../apps/Explorer/FileExplorerApp'))
 const ProjectWindow = lazy(() => import('../apps/Projects/ProjectWindow'))
 const AboutApp = lazy(() => import('../apps/About/AboutApp'))
@@ -11,6 +12,7 @@ const SystemsApp = lazy(() => import('../apps/Systems/SystemsApp'))
 const PlaceholderApp = lazy(() => import('../apps/PlaceholderApp'))
 
 export const appComponents = new Map([
+  ['welcome', WelcomeApp],
   ['terminal', TerminalApp],
   ['projects', FileExplorerApp],
   ['ai-lab', AILabApp],

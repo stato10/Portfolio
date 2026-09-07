@@ -29,6 +29,7 @@ export default function CinematicShowcase({ compact = false }) {
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
+        event.stopPropagation()
         videoRef.current?.pause()
         setPlaying(false)
         setOpen(false)

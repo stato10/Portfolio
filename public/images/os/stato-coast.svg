@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0 0 1920 1200" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="1300" y1="0" x2="550" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#ffd5ac"/><stop offset=".42" stop-color="#fd8e9e"/><stop offset="1" stop-color="#a797ed"/></linearGradient>
+    <linearGradient id="coral" x1="1630" y1="120" x2="1000" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#ffb19d"/><stop offset=".46" stop-color="#f36886"/><stop offset="1" stop-color="#af49bb"/></linearGradient>
+    <linearGradient id="violet" x1="1350" y1="390" x2="500" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#ce8fe8"/><stop offset=".4" stop-color="#886ce2"/><stop offset="1" stop-color="#425cce"/></linearGradient>
+    <linearGradient id="blue" x1="950" y1="470" x2="1050" y2="1270" gradientUnits="userSpaceOnUse"><stop stop-color="#429ff4"/><stop offset=".5" stop-color="#1462d2"/><stop offset="1" stop-color="#213aac"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="650" x2="1350" y2="1180" gradientUnits="userSpaceOnUse"><stop stop-color="#4bd7e4"/><stop offset=".45" stop-color="#269edf"/><stop offset="1" stop-color="#096fc4"/></linearGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1920v1200H0z"/>
+  <path fill="url(#coral)" d="M820 0h1100v1200H0V1000C210 850 480 720 620 420S705 160 820 0Z"/>
+  <path fill="url(#violet)" d="M0 0h720C830 175 1030 240 1210 430s260 434 710 630v140H0Z"/>
+  <path fill="url(#blue)" d="M0 0h450C510 168 571 390 833 571c323 223 651 182 1087 408v221H0Z"/>
+  <path fill="url(#sea)" d="M0 350c206 127 223 278 428 410 242 158 503 113 743 230 140 68 281 134 466 210H0Z"/>
+  <path stroke="#baf6ff" stroke-opacity=".25" stroke-width="2" d="M0 350c206 127 223 278 428 410 242 158 503 113 743 230 140 68 281 134 466 210"/>
+</svg>

@@ -4,7 +4,6 @@ import { apps, appById } from '../data/apps'
 import { useOSStore } from '../store/useOSStore'
 import AppIcon from './AppIcon'
 import WindowManager from './WindowManager'
-import CinematicShowcase from './CinematicShowcase'
 
 const formatTime = () => new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date())
 const launcherApps = apps.filter((app) => app.id !== 'github')
@@ -56,7 +55,9 @@ export default function MobileShell() {
         {mobileView === 'home' && (
           <section className="mobile-launcher" aria-label="STATO OS home">
             <button className="mobile-search" type="button" onClick={openSpotlight}><Search /> Search apps, projects, skills…</button>
-            <div className="mobile-identity"><span>STATO OS / MOBILE</span><h1>Build systems.<br /><em>Move ideas.</em></h1><CinematicShowcase compact /></div>
+            <div className="mobile-identity"><h1>Avraham’s<br /><em>desktop.</em></h1>
+              <div className="desktop-entry-actions"><button type="button" onClick={() => openApp('projects')}>Explore my work</button><button type="button" onClick={() => openApp('resume')}>View resume</button></div>
+            </div>
             <div className="mobile-app-grid">
               {launcherApps.map((app) => (
                 <button type="button" key={app.id} onClick={() => openApp(app.id)}>

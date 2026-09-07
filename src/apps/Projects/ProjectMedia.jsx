@@ -4,14 +4,15 @@ import { useReducedMotion } from 'framer-motion'
 
 export default function ProjectMedia({ item, title, aspectRatio = '16 / 10', priority = false, className = '' }) {
   const [loaded, setLoaded] = useState(false)
+  const [failedSrc, setFailedSrc] = useState(null)
   const reduceMotion = useReducedMotion()
   const mediaItem = typeof item === 'string' ? { type: 'image', src: item, alt: title } : item
 
-  if (!mediaItem?.src) {
+  if (!mediaItem?.src || failedSrc === mediaItem.src) {
     return (
       <div className={`project-media-system is-placeholder ${className}`} style={{ aspectRatio }} role="img" aria-label={`${title} media placeholder`}>
         <ImageIcon aria-hidden="true" />
-        <span>Media module ready</span>
+        <span>{mediaItem?.src ? 'Preview unavailable' : 'No preview available'}</span>
       </div>
     )
   }
@@ -30,6 +31,7 @@ export default function ProjectMedia({ item, title, aspectRatio = '16 / 10', pri
           preload="metadata"
           aria-label={mediaItem.alt || `${title} project video`}
           onLoadedData={() => setLoaded(true)}
+          onError={() => setFailedSrc(mediaItem.src)}
         />
         {!loaded && <div className="media-loading"><Play aria-hidden="true" /><span>Loading media</span></div>}
       </div>
@@ -44,6 +46,7 @@ export default function ProjectMedia({ item, title, aspectRatio = '16 / 10', pri
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
         onLoad={() => setLoaded(true)}
+        onError={() => setFailedSrc(mediaItem.src)}
       />
       {!loaded && <div className="media-loading"><span>Loading visual</span></div>}
     </div>

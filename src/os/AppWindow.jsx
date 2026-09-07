@@ -49,6 +49,7 @@ export default function AppWindow({ windowItem, children }) {
       ref={windowRef}
       {...(reduceMotion ? reducedWindowMotion : windowMotion)}
       className={`app-window${active ? ' is-active' : ''}${windowItem.maximized ? ' is-maximized' : ''}`}
+      data-app={windowItem.appId}
       style={{ left: bounds.x, top: bounds.y, width: bounds.width, height: bounds.height, zIndex: windowItem.zIndex, '--window-accent': windowItem.accent || '#65dcff' }}
       onPointerDown={() => focusWindow(windowItem.id)}
       aria-label={`${windowItem.title} window`}
@@ -67,7 +68,7 @@ export default function AppWindow({ windowItem, children }) {
           <button className="window-maximize" onClick={() => toggleMaximize(windowItem.id)} aria-label={`${windowItem.maximized ? 'Restore' : 'Maximize'} ${windowItem.title}`}><Maximize2 size={8} /></button>
         </div>
         <span>{windowItem.title}</span>
-        <span className="window-mode">{windowItem.maximized ? 'FULL' : 'LIVE'}</span>
+        <span className="window-mode" aria-hidden="true" />
       </header>
       <div className="window-content">{children}</div>
     </motion.section>

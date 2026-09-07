@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { projects, projectById } from '../../data/projects'
 import { preloadProjectLaunchMedia } from '../../motion/projectLaunchMedia'
 import { useOSStore } from '../../store/useOSStore'
+import ProjectMedia from '../Projects/ProjectMedia'
 
 const aiProjects = projects.filter((project) => /AI|Realtime|Decision/i.test(`${project.category} ${project.stack.join(' ')}`))
 
@@ -57,7 +58,7 @@ export default function AILabApp() {
             </dl>
           </div>
           <figure className="lab-hero-evidence">
-            <img src={project.media.thumbnail} alt={`${project.title} interface`} />
+            <ProjectMedia key={project.id} item={project.media.thumbnail} title={project.title} priority className="lab-preview" />
             <strong className="lab-status"><i />{project.status}</strong>
             <figcaption><span>{project.shortTitle}</span><span>Captured product interface</span></figcaption>
           </figure>

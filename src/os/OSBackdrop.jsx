@@ -1,4 +1,4 @@
-const environmentArtwork = `${import.meta.env.BASE_URL}images/os/stato-environment.jpg`
+const environmentArtwork = `${import.meta.env.BASE_URL}images/os/stato-coast.svg`
 
 export default function OSBackdrop({ variant = 'desktop' }) {
   return (

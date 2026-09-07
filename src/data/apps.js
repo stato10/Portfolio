@@ -1,5 +1,12 @@
 export const apps = [
   {
+    id: 'welcome', title: 'Welcome', shortLabel: 'Welcome', icon: 'user',
+    accent: '#007aff', palette: ['#69c9ff', '#0879ef', '#ffffff'],
+    defaultSize: { width: 740, height: 510 }, minimumSize: { width: 600, height: 440 },
+    keywords: ['start', 'home', 'help', 'introduction'], route: '/welcome',
+    description: 'Welcome to Avraham Stato’s interactive portfolio desktop.',
+  },
+  {
     id: 'projects',
     title: 'Projects',
     shortLabel: 'Projects',

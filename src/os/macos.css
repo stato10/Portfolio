@@ -1,0 +1,232 @@
+/* STATO desktop — user-approved macOS direction, code-led, d0af258f.
+   Bright coastal wallpaper; translucent system chrome; white reading surfaces.
+   The OS metaphor supplies navigation, never fabricated device telemetry. */
+:root {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mac-ink: #20232a;
+  --mac-muted: #59616e;
+  --mac-blue: #0069d9;
+  --mac-line: #dce0e6;
+  --cyan: #0069d9;
+  --line: rgb(40 52 72 / 14%);
+  --stato-text-1: #20232a;
+  --stato-text-2: #59616e;
+  --stato-text-3: #626b78;
+  --shadow-window: 0 25px 70px rgb(23 31 75 / 27%), 0 4px 14px rgb(23 31 75 / 16%);
+}
+body { background: #7aadef; }
+::selection { color: #123968; background: #bcdcff; }
+.os-desktop { background: #75b2ed; color: var(--mac-ink); }
+.os-desktop::before, .os-desktop::after { display: none; }
+.os-backdrop--desktop img { opacity: 1; filter: none; transform: none; }
+.os-backdrop--desktop span { display: none; }
+.menu-bar { height: 32px; background: rgb(247 248 255 / 70%); border: 0; color: #202d48; box-shadow: 0 1px 0 rgb(255 255 255 / 25%); backdrop-filter: blur(28px) saturate(160%); }
+.menu-left strong { color: #19263b; font-size: 13px; }
+.menu-links button { color: #24314b; font-size: 13px; }
+.menu-links button:hover { background: rgb(35 55 100 / 10%); color: #172439; }
+.stato-menu { border: 0; background: transparent; color: #19263b; box-shadow: none; text-shadow: none; font: 800 19px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.menu-right, .menu-right time { color: #24314b; }
+.menu-right time { font: 500 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.menu-right button:hover { background: rgb(35 55 100 / 10%); color: #172439; }
+.desktop-icons { top: 52px; right: 24px; grid-template-columns: repeat(2, 88px); gap: 15px 7px; }
+.desktop-icon { padding: 6px; gap: 7px; }
+.desktop-icon > span { width: 59px; height: 59px; border-radius: 14px; box-shadow: 0 5px 9px rgb(22 43 92 / 21%); }
+.desktop-icon small { max-width: 87px; font-size: 12px; font-weight: 600; color: white; text-shadow: 0 1px 3px rgb(0 34 83 / 80%); }
+.desktop-icon:hover, .desktop-icon:focus-visible { transform: none; border-color: rgb(255 255 255 / 45%); background: rgb(255 255 255 / 15%); }
+.desktop-icon.is-active > span { box-shadow: 0 5px 9px rgb(22 43 92 / 21%); }
+.desktop-icon.is-active small { background: #1765d3; }
+.desktop-icon.is-open::after { background: white; box-shadow: none; }
+.dock { bottom: 12px; padding: 9px 10px 7px; gap: 7px; border: 1px solid rgb(255 255 255 / 55%); border-radius: 22px; background: rgb(240 247 255 / 42%); box-shadow: 0 14px 38px rgb(26 44 102 / 22%); backdrop-filter: blur(30px) saturate(150%); }
+.dock-item { width: 60px; height: 65px; }
+.dock-icon { width: 56px; height: 56px; border-radius: 13px; box-shadow: 0 5px 8px rgb(30 49 99 / 22%); }
+.dock-item.is-active .dock-icon { box-shadow: 0 5px 8px rgb(30 49 99 / 22%); }
+.dock-running { width: 4px; height: 4px; left: 28px; bottom: 0; background: #283854; box-shadow: none; }
+.dock-tooltip { background: rgb(247 249 255 / 94%); color: #263348; border: 0; box-shadow: 0 4px 12px rgb(20 40 80 / 16%); font: 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.app-icon-art { border: 1px solid rgb(255 255 255 / 60%); box-shadow: inset 0 1px 1px rgb(255 255 255 / 60%), inset 0 -1px 2px rgb(0 30 90 / 12%); }
+.app-icon-art::before { transform: none; background: linear-gradient(rgb(255 255 255 / 20%), transparent); }
+.app-icon-art::after { display: none; }
+.app-icon-art svg { width: 62%; height: 62%; filter: drop-shadow(0 1px 1px rgb(20 40 80 / 15%)); }
+.app-icon-art--welcome { background: linear-gradient(#78d5ff, #0d86ee); }
+.app-icon-art--projects { background: linear-gradient(#81deff, #099cf2); }
+.app-icon-art--ai-lab { background: linear-gradient(145deg, #fa9bdf, #b65dea 56%, #7853e1); }
+.app-icon-art--systems { background: linear-gradient(#f6f8fb, #b6c2d0); color: #556170; }
+.app-icon-art--resume { background: linear-gradient(#ffffff, #edf1f6); color: #2987ee; }
+.app-icon-art--about { background: linear-gradient(#ffce75, #ff8e3b); color: #fff; }
+.app-icon-art--contact { background: linear-gradient(#7acfff, #007cec); color: white; }
+.app-icon-art--github { background: linear-gradient(#c19df5, #7354bd); }
+.app-icon-art--terminal { background: linear-gradient(#52606b, #16212b); color: #dbffe9; border: 3px solid #e4e9ee; }
+.desktop-icon.is-folder > span svg { width: 56px; height: 56px; fill: #40c1fa; stroke: #b4efff; filter: drop-shadow(0 4px 3px rgb(10 73 145 / 22%)); }
+.app-window { border: 1px solid rgb(255 255 255 / 65%); border-radius: 12px; background: #f7f7f9; box-shadow: var(--shadow-window); backdrop-filter: blur(25px); }
+.app-window.is-active { border-color: rgb(255 255 255 / 75%); }
+.app-window::before { display: none; }
+.app-window:not(.is-active) { filter: none; box-shadow: 0 12px 32px rgb(23 31 75 / 16%); }
+.window-titlebar { background: linear-gradient(#f6f6f8, #ececef); border-bottom: 1px solid #d8d9de; box-shadow: inset 0 1px white; }
+.window-titlebar > span { color: #484b53; font-size: 13px; font-weight: 600; letter-spacing: 0; }
+.window-controls { gap: 8px; }
+.window-controls button { width: 13px; height: 13px; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 12%); }
+.window-close { background: #ff5f57; }.window-minimize { background: #febc2e; }.window-maximize { background: #28c840; }
+.window-controls button svg { color: #593d28; }
+.window-content { background: #fff; color: var(--mac-ink); }
+.window-content, .file-surface, .case-content { scrollbar-color: #b6bac2 transparent; scrollbar-width: thin; }
+.os-desktop .app-window:not([data-app='terminal']) :is(h1,h2,h3,h4,strong,b) { color: var(--mac-ink); text-shadow: none; }
+.os-desktop .app-window:not([data-app='terminal']) :is(p,li,dt,dd,small,label) { color: var(--mac-muted); }
+.os-desktop .app-window:not([data-app='terminal']) :is(a,button) { color: #075bb5; }
+.os-desktop .app-window:not([data-app='terminal']) :is(h1,h2,h3,h4) { letter-spacing: -.03em; }
+.os-desktop .app-window:not([data-app='terminal']) p { line-height: 1.65; }
+.os-desktop .app-window:not([data-app='terminal']) :is(button,a,input):focus-visible { outline: 3px solid #007aff; outline-offset: 2px; }
+.os-desktop .app-window:not([data-app='terminal']) input { color: #20232a; caret-color: #007aff; }
+.os-desktop .app-window:not([data-app='terminal']) input::placeholder { color: #657080; }
+/* Finder-style project library. */
+.os-desktop .file-explorer { background: #fff; color: #30343d; }
+.os-desktop .portfolio-browser-toolbar { background: #f5f5f7; border-color: #dddfe5; }
+.os-desktop .portfolio-browser-title > span { background: #e2eeff; color: #1675d4; border: 0; }
+.os-desktop .portfolio-breadcrumb { color: #687080; }
+.os-desktop .portfolio-breadcrumb strong { color: #313b4c; }
+.os-desktop .file-explorer .file-sidebar { background: #eff1f5; border-color: #dcdfe5; }
+.os-desktop .file-explorer .file-sidebar nav button { background: transparent; border-color: transparent; }
+.os-desktop .file-explorer .file-sidebar nav button.is-active { background: #d8e7fb; border-color: transparent; box-shadow: none; }
+.os-desktop .file-explorer .file-sidebar nav button > span:first-child { background: transparent; color: #0c77dc; border: 0; }
+.os-desktop .file-explorer .file-sidebar nav button small { color: #5f6775; }
+.os-desktop .file-explorer .file-sidebar > span { color: #646b77; }
+.os-desktop .portfolio-availability { border-color: #dcdfe5; }
+.os-desktop .file-explorer .file-surface { background: #fff; scrollbar-color: #b4bac3 #fff; }
+.os-desktop .file-explorer .portfolio-library-heading { padding-top: 23px; min-height: 108px; }
+.os-desktop .file-explorer .portfolio-library-heading h2 { font-size: 30px; }
+.os-desktop .file-search { background: #fff; border-color: #cdd2db; box-shadow: 0 1px 2px rgb(0 0 0 / 3%); }
+.os-desktop .portfolio-view-toggle { background: #e8e9ee; border-color: #d6d8df; }
+.os-desktop .portfolio-view-toggle button.is-active { background: white; box-shadow: 0 1px 3px rgb(0 0 0 / 13%); }
+.os-desktop .portfolio-filters button { background: #f5f6f8; border-color: #dce0e7; color: #4a5261; }
+.os-desktop .portfolio-filters button[aria-pressed='true'] { background: #087aee; color: #fff; border-color: transparent; }
+.os-desktop .portfolio-item { background: white; border: 1px solid #e0e3e9; }
+.os-desktop .portfolio-item:hover { border-color: #9abfe9; box-shadow: 0 5px 16px rgb(31 69 121 / 9%); }
+.os-desktop .portfolio-item-media { background: #e9eff7; }
+.os-desktop .portfolio-item-media::after { display: none; }
+.os-desktop .portfolio-item-copy { background: #fff; }
+.os-desktop .portfolio-item-description { color: #536071; }
+.os-desktop .portfolio-item-stack small { background: #f0f3f8; border-color: transparent; }
+.os-desktop .portfolio-item > footer { background: #f8f9fb; border-color: #e4e7ed; }
+.os-desktop .portfolio-item > footer > span { color: #536071; }
+.os-desktop .portfolio-browser-status { background: #f3f4f7; color: #5b6370; border-color: #dce0e6; }
+.os-desktop .file-empty button { color: #fff; background: #087aee; border: 0; }
+.os-desktop .portfolio-filters { scrollbar-width: thin; scrollbar-color: #b6bdc9 transparent; }
+/* Reading surfaces share the same paper, sidebar, and selection vocabulary. */
+.os-desktop :is(.about-app,.ai-lab-app,.systems-app,.contact-app,.resume-app,.project-case-app) { background: #fff; color: #343c49; }
+.os-desktop :is(.about-content,.lab-workspace,.systems-content,.contact-workspace,.case-content,.resume-document) { background: #fff; color: #343c49; }
+.os-desktop :is(.about-rail,.lab-library,.case-navigation) { background: #eff1f5; border-color: #dce0e6; }
+.os-desktop :is(.about-tabs,.lab-library,.case-navigation) button { background: transparent; border-color: transparent; }
+.os-desktop :is(.about-tabs,.lab-library,.case-navigation) button:is(.is-active,.is-selected) { background: #d8e7fb; border-color: transparent; box-shadow: none; }
+.os-desktop :is(.about-tabs,.lab-library,.case-navigation) :is(span,small,footer) { color: #616b7b; }
+.os-desktop :is(.about-section,.about-overview-grid article,.about-practice-grid article,.about-facts,.about-timeline article,.resume-snapshot article,.resume-section,.contact-channel-panel,.contact-fit,.contact-hero,.contact-hero aside,.contact-methods a,.contact-app > footer,.systems-header,.systems-tabs,.systems-intro,.systems-map,.systems-proof,.systems-capability-view article,.systems-production-view aside,.lab-panel,.lab-evidence-strip,.lab-case-meta,.lab-library header,.case-capabilities,.project-stack-tab section,.architecture-node,.case-project-switcher) { background: #f7f8fb; border-color: #dce0e7; box-shadow: none; color: #414c5d; }
+.os-desktop :is(.lab-hero,.lab-detail-grid,.case-section,.project-media-tab,.project-stack-tab,.project-architecture) { background: #fff; }
+.os-desktop :is(.about-portrait,.lab-hero-evidence) img { filter: none; }
+.os-desktop :is(.contact-hero h2 em,.about-overview h2 em,.case-hero h2 em) { color: #4e668b; }
+.os-desktop :is(.about-actions,.lab-hero-actions,.systems-proof,.systems-production-view,.contact-fit) button { background: #e2eeff; border-color: #bdd4f1; }
+.os-desktop :is(.lab-panel,.lab-evidence-strip,.lab-case-meta,.systems-map,.systems-header,.systems-intro,.systems-proof,.systems-capability-view,.systems-production-view,.contact-app,.resume-app,.about-app,.case-content) :is(span,em) { color: #526176; }
+.os-desktop :is(.systems-tabs button.is-active,.case-monogram) { color: #075bb5; background: #d8e7fb; }
+.os-desktop :is(.project-media-placeholder,.project-media-system.is-placeholder) { background: #edf2f9; color: #64738b; }
+.os-desktop :is(.contact-methods a,.case-project-switcher button):hover { background: #e7f0ff; }
+.os-desktop .app-kicker { color: #596a80; }
+.os-desktop .resume-toolbar { background: #f1f2f6; border-color: #dce0e7; }
+.os-desktop .systems-map article,.os-desktop .architecture-stage article { background: #f0f4fa; border-color: #d3dce9; }
+.os-desktop .systems-map article > i,.os-desktop .architecture-connector svg { background: #e5edf8; }
+.os-desktop .lab-pipeline li > i { background: #e5edf8; color: #225d9c; border-color: #bed2ec; }
+.os-desktop .lab-hero-evidence { background: #edf2f9; }
+.os-desktop .lab-hero-evidence figcaption { background: #f3f5f9; border-color: #dce0e7; color: #59616e; }
+.os-desktop .lab-hero-evidence figcaption span { color: #59616e; }
+.os-desktop .lab-status { background: #f7f9fc; border-color: #d4dce7; }
+.lab-hero-evidence .lab-preview { height: 100%; min-height: 0; aspect-ratio: auto !important; }
+.os-desktop .case-hero-visual { background: #edf2f9; }
+.os-desktop .case-hero-visual::after { display: none; }
+.os-desktop .case-hero-signal { color: #435875; background: rgb(248 251 255 / 94%); padding: 5px 8px; border-radius: 4px; max-width: calc(100% - 32px); }
+.os-desktop .project-media-system { background: #edf2f9; }
+.os-desktop .media-loading { background: #edf2f9; color: #53667f; }
+.os-desktop .project-media-system img { filter: none; }
+.os-desktop .file-explorer .portfolio-item-media > svg { color: #3979be; }
+/* A real terminal intentionally remains dark inside the light window chrome. */
+.terminal-app { color-scheme: dark; background: #1b2028; color: #d2d8e3; }
+.terminal-meta { color: #adb8c6; border-color: #434a55; }
+.terminal-app .terminal-prompt input { color: #fff; caret-color: #a6ddff; }
+.terminal-app .terminal-run { color: #fff; background: #3a4657; }
+.mac-welcome { display: grid; grid-template-columns: 225px minmax(0,1fr); height: 100%; }
+.mac-welcome-profile { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 20px; text-align: center; background: linear-gradient(160deg,#e9f2ff,#f1edff); border-right: 1px solid #e0e4ef; }
+.mac-welcome-profile img { width: 116px; height: 116px; border-radius: 50%; object-fit: cover; object-position: center 28%; border: 4px solid white; box-shadow: 0 5px 18px rgb(67 97 157 / 16%); }
+.mac-welcome-profile strong { margin-top: 20px; font-size: 19px; font-weight: 650; }
+.mac-welcome-profile p { font-size: 12px; line-height: 1.65; margin: 9px 0 20px; }
+.mac-welcome-profile a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; text-decoration: none; }
+.mac-welcome-main { align-self: center; padding: 30px 34px; }
+.mac-welcome-main h1 { margin: 0; font-size: 40px; line-height: 1.08; font-weight: 700; letter-spacing: -.035em; }
+.mac-welcome-main > p { margin: 17px 0 22px; font-size: 14px; line-height: 1.65; }
+.mac-welcome-actions { display: flex; gap: 8px; }
+.mac-welcome-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 13px; border: 1px solid #d4d8e1; border-radius: 7px; background: white; font-size: 13px; cursor: pointer; min-height: 40px; }
+.os-desktop .app-window .mac-welcome-actions .mac-primary { background: #087aee; border-color: transparent; color: white; }
+.mac-welcome-actions button:hover { filter: brightness(.95); }
+.mac-welcome .cinematic-card { margin-top: 23px; width: 100%; background: #f4f6fa; border-color: #e0e5ed; box-shadow: none; min-height: 65px; }
+.mac-welcome .cinematic-copy > span { color: #52718f; }
+.mac-welcome .cinematic-copy strong { font-size: 13px; }
+.mac-welcome .cinematic-copy small { color: #68768a; }
+.mac-welcome .cinematic-card-copy em { color: #68768a; }
+.mac-search-hint { display: flex; align-items: center; gap: 7px; margin-top: 18px; padding: 0; border: 0; background: none; font-size: 12px; cursor: pointer; }
+.mac-search-hint kbd { margin-left: 5px; border: 1px solid #dce0e7; border-radius: 4px; padding: 2px 5px; background: #f4f5f8; font-size: 10px; }
+/* Search and task switching are translucent system panels, not dark dashboards. */
+.spotlight-backdrop,.task-view-backdrop { background: rgb(27 43 79 / 20%); }
+.spotlight,.task-view { background: rgb(250 251 255 / 95%); color: #253046; border-color: white; box-shadow: 0 20px 70px rgb(20 36 80 / 25%); }
+.spotlight input { color: #253046; caret-color: #007aff; }
+.spotlight input::placeholder { color: #636e81; }
+.spotlight-results button { color: #263247; }
+.spotlight-results button strong { color: #263247; }
+.spotlight-results button small,.spotlight-results button i,.spotlight footer { color: #5c687d; }
+.spotlight-results button.is-active { background: #d7e9ff; }
+.spotlight label,.spotlight footer { border-color: #d6deeb; }
+.spotlight footer kbd { background: #e7ecf4; color: #526177; }
+.task-view header strong,.task-view-focus strong { color: #263247; }
+.task-view article { background: #eaf0f9; border-color: #d5dfed; }
+.task-view-close,.task-view header button,.task-view-focus small { color: #4a607d; }
+.boot-screen { background: #eff3ff; }
+.boot-screen::before,.boot-noise,.boot-readout { display: none; }
+.boot-panel { width: 240px; text-align: center; }
+.boot-mark { color: #203b67; font-weight: 650; letter-spacing: -.035em; }
+.boot-subtitle { color: #526584; font: 14px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; letter-spacing: 0; text-transform: none; margin: 18px 0 30px; }
+.boot-progress { height: 5px; border-radius: 5px; background: #ccd7ec; }
+.boot-progress span { background: #2d7bea; }
+.boot-os { color: #536781; text-align: center; letter-spacing: .04em; }
+.os-backdrop--boot { display: none; }
+@media (max-width: 760px) {
+  .mobile-statusbar { background: rgb(245 249 255 / 74%); color: #1d3455; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+  .mobile-statusbar > strong { color: #1d3455; font-weight: 600; }
+  .mobile-identity h1 { color: white; font-size: 32px; text-shadow: 0 2px 8px rgb(15 59 129 / 25%); }
+  .mobile-identity h1 em { color: #fff; }
+  .mobile-identity .desktop-entry-actions button { background: #f5f8ff; color: #17538e; border: 0; }
+  .mobile-identity .desktop-entry-actions button:first-child { background: #0875dd; color: #fff; }
+  .mobile-launcher { background: transparent; }
+  .mobile-search { background: rgb(248 251 255 / 85%); border: 0; color: #425778; box-shadow: 0 3px 10px rgb(0 49 120 / 10%); }
+  .mobile-app-grid small,.mobile-drawer-grid small { color: #fff; font-size: 12px; text-shadow: 0 1px 3px #26558b; }
+  .mobile-app-grid button > span,.mobile-drawer-grid button > span { width: 57px; height: 57px; border-radius: 14px; box-shadow: 0 4px 9px rgb(23 52 100 / 22%); }
+  .mobile-navigation { background: rgb(248 251 255 / 78%); border-color: rgb(255 255 255 / 45%); backdrop-filter: blur(28px); }
+  .mobile-navigation button { color: #526586; }
+  .mobile-navigation button.is-active { color: #0869cf; background: #dcecff; }
+  .mobile-direct-actions a { background: rgb(248 251 255 / 85%); color: #27496f; border: 0; font-size: 13px; }
+  .mobile-stage .window-close { background: #e5e7ed; color: #3e4a5e; box-shadow: none; }
+  .mobile-stage .window-titlebar { background: #f5f5f7; }
+  .mobile-drawer,.mobile-recents { background: rgb(239 245 255 / 94%); color: #263247; }
+  .mobile-drawer header strong,.mobile-recents header strong { color: #263247; }
+  .mobile-drawer-grid small { color: #263247; text-shadow: none; }
+  .mobile-drawer-search { background: #fff; color: #4a6281; border-color: #cfd9e8; }
+  .mobile-drawer-search input { color: #263247; }
+  .mobile-recents article { background: #fff; border-color: #d3ddeb; }
+  .mobile-recents article strong { color: #263247; }
+  .mobile-recents article small { color: #52627b; }
+  .mac-welcome { grid-template-columns: 1fr; height: auto; min-height: 100%; }
+  .mac-welcome-profile { padding: 22px 20px 18px; border-right: 0; border-bottom: 1px solid #e0e4ef; }
+  .mac-welcome-profile img { width: 76px; height: 76px; }
+  .mac-welcome-profile strong { margin-top: 10px; }
+  .mac-welcome-profile p { margin: 5px 0 10px; }
+  .mac-welcome-main { padding: 24px; }
+  .mac-welcome-main h1 { font-size: 35px; }
+  .mac-welcome-actions { flex-wrap: wrap; }
+  .mac-welcome-actions button { min-height: 44px; }
+  .os-desktop .file-explorer .file-sidebar { background: #eff1f5; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dock-item,.app-window,.app-icon-art { transition: none; }
+}

@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-07T00:00:00Z",
+  "title": "Design System: STATO OS",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Native Blue",
+        "tonalRamp": [
+          "oklch(15% 0.13 250)",
+          "oklch(26% 0.13 250)",
+          "oklch(38% 0.13 250)",
+          "oklch(49% 0.13 250)",
+          "oklch(61% 0.13 250)",
+          "oklch(72% 0.13 250)",
+          "oklch(84% 0.13 250)",
+          "oklch(95% 0.13 250)"
+        ]
+      },
+      "action": {
+        "role": "primary",
+        "displayName": "Action Blue",
+        "tonalRamp": [
+          "oklch(15% 0.14 250)",
+          "oklch(26% 0.14 250)",
+          "oklch(38% 0.14 250)",
+          "oklch(49% 0.14 250)",
+          "oklch(61% 0.14 250)",
+          "oklch(72% 0.14 250)",
+          "oklch(84% 0.14 250)",
+          "oklch(95% 0.14 250)"
+        ]
+      },
+      "selection": {
+        "role": "neutral",
+        "displayName": "Selected Row",
+        "tonalRamp": [
+          "oklch(15% 0.03 250)",
+          "oklch(26% 0.03 250)",
+          "oklch(38% 0.03 250)",
+          "oklch(49% 0.03 250)",
+          "oklch(61% 0.03 250)",
+          "oklch(72% 0.03 250)",
+          "oklch(84% 0.03 250)",
+          "oklch(95% 0.03 250)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(38% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(84% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Reading Panel",
+        "tonalRamp": [
+          "oklch(15% 0.006 260)",
+          "oklch(26% 0.006 260)",
+          "oklch(38% 0.006 260)",
+          "oklch(49% 0.006 260)",
+          "oklch(61% 0.006 260)",
+          "oklch(72% 0.006 260)",
+          "oklch(84% 0.006 260)",
+          "oklch(95% 0.006 260)"
+        ]
+      },
+      "sidebar": {
+        "role": "neutral",
+        "displayName": "Sidebar Gray",
+        "tonalRamp": [
+          "oklch(15% 0.008 260)",
+          "oklch(26% 0.008 260)",
+          "oklch(38% 0.008 260)",
+          "oklch(49% 0.008 260)",
+          "oklch(61% 0.008 260)",
+          "oklch(72% 0.008 260)",
+          "oklch(84% 0.008 260)",
+          "oklch(95% 0.008 260)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.012 260)",
+          "oklch(26% 0.012 260)",
+          "oklch(38% 0.012 260)",
+          "oklch(49% 0.012 260)",
+          "oklch(61% 0.012 260)",
+          "oklch(72% 0.012 260)",
+          "oklch(84% 0.012 260)",
+          "oklch(95% 0.012 260)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Gray",
+        "tonalRamp": [
+          "oklch(15% 0.018 260)",
+          "oklch(26% 0.018 260)",
+          "oklch(38% 0.018 260)",
+          "oklch(49% 0.018 260)",
+          "oklch(61% 0.018 260)",
+          "oklch(72% 0.018 260)",
+          "oklch(84% 0.018 260)",
+          "oklch(95% 0.018 260)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Fine Line",
+        "tonalRamp": [
+          "oklch(15% 0.01 260)",
+          "oklch(26% 0.01 260)",
+          "oklch(38% 0.01 260)",
+          "oklch(49% 0.01 260)",
+          "oklch(61% 0.01 260)",
+          "oklch(72% 0.01 260)",
+          "oklch(84% 0.01 260)",
+          "oklch(95% 0.01 260)"
+        ]
+      },
+      "terminal": {
+        "role": "neutral",
+        "displayName": "Terminal Charcoal",
+        "tonalRamp": [
+          "oklch(15% 0.02 260)",
+          "oklch(26% 0.02 260)",
+          "oklch(38% 0.02 260)",
+          "oklch(49% 0.02 260)",
+          "oklch(61% 0.02 260)",
+          "oklch(72% 0.02 260)",
+          "oklch(84% 0.02 260)",
+          "oklch(95% 0.02 260)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Welcome headline",
+        "purpose": "Native desktop greeting; 35px on mobile."
+      },
+      "body": {
+        "displayName": "Introduction",
+        "purpose": "Readable Welcome copy; existing apps retain their hierarchy."
+      },
+      "mono": {
+        "displayName": "Technical metadata",
+        "purpose": "Existing metadata and terminal text."
+      }
+    },
+    "shadows": [
+      {
+        "name": "active-window",
+        "value": "0 25px 70px rgb(23 31 75 / 27%), 0 4px 14px rgb(23 31 75 / 16%)",
+        "purpose": "Focused floating windows."
+      },
+      {
+        "name": "inactive-window",
+        "value": "0 12px 32px rgb(23 31 75 / 16%)",
+        "purpose": "Unfocused windows."
+      },
+      {
+        "name": "dock",
+        "value": "0 14px 38px rgb(26 44 102 / 22%)",
+        "purpose": "Glass navigation tray."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control",
+        "value": "180ms",
+        "purpose": "Inherited control transitions."
+      },
+      {
+        "name": "window",
+        "value": "320ms",
+        "purpose": "Inherited window motion."
+      },
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Inherited shell easing; honor reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "760px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Welcome action opening Projects.",
+      "html": "<button class=\"ds-primary\">Explore projects</button>",
+      "css": ".ds-primary{background:#087aee;color:white;border:1px solid transparent;border-radius:7px;padding:10px 13px;min-height:40px;font:13px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;cursor:pointer}.ds-primary:hover{filter:brightness(.95)}.ds-primary:focus-visible{outline:3px solid #007aff;outline-offset:2px}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Welcome action opening Resume.",
+      "html": "<button class=\"ds-secondary\">My resume</button>",
+      "css": ".ds-secondary{background:white;color:#075bb5;border:1px solid #d4d8e1;border-radius:7px;padding:10px 13px;min-height:40px;font:13px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;cursor:pointer}.ds-secondary:hover{filter:brightness(.95)}.ds-secondary:focus-visible{outline:3px solid #007aff;outline-offset:2px}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search",
+      "description": "Compact project search.",
+      "html": "<label class=\"ds-search\"><input aria-label=\"Search projects\" placeholder=\"Search projects\"></label>",
+      "css": ".ds-search{display:flex;align-items:center;height:32px;padding:0 10px;border:1px solid #cdd2db;border-radius:7px;background:white;box-shadow:0 1px 2px rgb(0 0 0 / 3%)}.ds-search input{width:100%;min-width:0;border:0;background:transparent;color:var(--mac-ink);font:12px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;caret-color:#007aff}.ds-search input::placeholder{color:#657080}.ds-search input:focus-visible{outline:3px solid #007aff;outline-offset:2px}"
+    },
+    {
+      "name": "Selected navigation",
+      "kind": "nav",
+      "refersTo": "navigation-selected",
+      "description": "Finder-like selected sidebar destination.",
+      "html": "<nav class=\"ds-nav\"><button aria-current=\"page\"><strong>Projects</strong><small>Explore the work</small></button></nav>",
+      "css": ".ds-nav{background:#eff1f5;padding:10px}.ds-nav button{display:flex;flex-direction:column;gap:3px;width:100%;min-height:55px;padding:7px 9px;border:1px solid transparent;border-radius:9px;background:#d8e7fb;text-align:left;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;cursor:pointer}.ds-nav strong{color:var(--mac-ink);font-size:12px;font-weight:500}.ds-nav small{color:#5f6775;font-size:10px}.ds-nav button:focus-visible{outline:3px solid #007aff;outline-offset:2px}"
+    },
+    {
+      "name": "Project card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Light project container; content remains project-specific.",
+      "html": "<article class=\"ds-card\"><a href=\"#project\">Project title</a><p>Existing project description.</p></article>",
+      "css": ".ds-card{padding:16px;background:white;border:1px solid #e0e3e9;border-radius:12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-shadow:0 14px 32px rgba(0,0,0,.17);transition:transform 180ms cubic-bezier(.16,1,.3,1),box-shadow 180ms ease}.ds-card:hover{transform:translateY(-2px);border-color:#9abfe9;box-shadow:0 5px 16px rgb(31 69 121 / 9%)}.ds-card a{color:#075bb5}.ds-card p{color:var(--mac-muted);line-height:1.65}.ds-card a:focus-visible{outline:3px solid #007aff;outline-offset:2px}@media(prefers-reduced-motion:reduce){.ds-card{transition:none}}"
+    },
+    {
+      "name": "Selected filter",
+      "kind": "chip",
+      "description": "Pressed project filter with the implemented blue selection treatment.",
+      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All projects</button>",
+      "css": ".ds-filter{background:#087aee;color:white;border:1px solid transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;cursor:pointer}.ds-filter:focus-visible{outline:3px solid #007aff;outline-offset:2px}"
+    },
+    {
+      "name": "Light window",
+      "kind": "custom",
+      "refersTo": "window",
+      "description": "Light titlebar and traffic lights above paper content.",
+      "html": "<section class=\"ds-window\"><header><span class=\"ds-lights\"><i></i><i></i><i></i></span><strong>Welcome</strong></header><p>Make yourself at home.</p></section>",
+      "css": ".ds-window{overflow:hidden;border:1px solid rgb(255 255 255 / 65%);border-radius:12px;background:white;color:var(--mac-ink);box-shadow:var(--shadow-window);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.ds-window header{position:relative;display:flex;justify-content:center;align-items:center;height:39px;padding:0 13px;background:linear-gradient(#f6f6f8,#ececef);border-bottom:1px solid #d8d9de;box-shadow:inset 0 1px white}.ds-window strong{font-size:13px;font-weight:600;color:#484b53}.ds-lights{position:absolute;left:13px;display:flex;gap:8px}.ds-lights i{width:13px;height:13px;border-radius:50%;background:#ff5f57;box-shadow:inset 0 0 0 1px rgb(0 0 0 / 12%)}.ds-lights i:nth-child(2){background:#febc2e}.ds-lights i:nth-child(3){background:#28c840}.ds-window p{padding:24px;font-size:14px;line-height:1.65}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A bright personal macOS desktop",
+    "overview": "Friendly, colorful operating-system navigation surrounds calm reading surfaces. The user explicitly chose native operating-system typography, light windows, vibrant app icons and a glass Dock, and rejected the dark dashboard appearance. STATO OS is a personal portfolio, not an Apple product.\n\nThis captures the implemented code-first world (contract seed d0af258f), not an approved image comp. Existing project layouts and content remain intact; the macOS stylesheet supplies their light presentation.",
+    "keyCharacteristics": [
+      "Bright coral, violet and ocean-blue SVG wallpaper.",
+      "Translucent system chrome around white and pale-gray content.",
+      "Blue selection, colorful icons and a dismissible Welcome window."
+    ],
+    "rules": [
+      {
+        "name": "The Light Reading Rule",
+        "body": "Keep portfolio reading surfaces white or pale gray; the intentional dark terminal is not a template for other apps.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do keep native system typography and familiar window controls.",
+      "Do use wallpaper and colorful app icons for personality, with light content surfaces for reading.",
+      "Do preserve dismissible Welcome behavior, keyboard focus and reduced-motion support.",
+      "Do retain existing content, layouts, project evidence and navigation paths."
+    ],
+    "donts": [
+      "Don't return the desktop or portfolio apps to a dark dashboard appearance.",
+      "Don't turn the intentional terminal exception into a global dark theme.",
+      "Don't imply Apple affiliation or an approved visual comp."
+    ]
+  }
+}

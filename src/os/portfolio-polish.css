@@ -1,0 +1,77 @@
+/* Preserve the OS shell; give the work and its entry points more breathing room. */
+.menu-links { display: flex; align-items: center; gap: 3px; }
+.menu-links button { border: 0; border-radius: 5px; padding: 5px 10px; background: transparent; color: #e3eaf1; cursor: pointer; }
+.menu-links button:hover { background: rgb(255 255 255 / 12%); color: white; }
+.menu-right button:disabled { opacity: .35; cursor: default; }
+.menu-right button:disabled:hover { background: transparent; }
+.desktop-identity { max-width: calc(100vw - 300px); top: 15vh; }
+.desktop-identity h1 { font-size: clamp(34px, 4vw, 60px); line-height: 1.12; letter-spacing: -.035em; font-weight: 600; text-wrap: balance; }
+.desktop-identity h1 em { color: #b8ccd9; }
+.desktop-identity > .desktop-intro { max-width: 49ch; margin: 22px 0 0; color: #b8c7d4; font: 400 16px/1.7 'Manrope', sans-serif; letter-spacing: 0; }
+.desktop-entry-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; pointer-events: auto; }
+.desktop-entry-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 11px 20px; border: 1px solid rgb(211 233 248 / 28%); border-radius: 9px; background: rgb(17 30 46 / 80%); color: #eff6fb; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 160ms ease, border-color 160ms ease; }
+.desktop-entry-actions button:first-child { border-color: transparent; background: #bcecff; color: #102236; }
+.desktop-entry-actions button:hover { border-color: #bcecff; background: #243d56; }
+.desktop-entry-actions button:first-child:hover { background: #e0f6ff; }
+.desktop-identity .identity-status { margin-top: 22px; color: #adc0cd; font-size: 11px; letter-spacing: .03em; }
+.desktop-identity .identity-status span { color: #adc0cd; }
+.desktop-identity .cinematic-card { margin-top: 25px; }
+.file-explorer { container-type: inline-size; }
+.file-explorer .file-surface { background: #0c121b; }
+.file-explorer .portfolio-library-heading { padding: 28px 26px 18px; min-height: 120px; }
+.file-explorer .portfolio-library-heading h2 { font-size: 36px; letter-spacing: -.035em; line-height: 1.2; }
+.file-explorer .portfolio-library-heading p { color: #afbfcb; font-size: 14px; line-height: 1.65; }
+.file-explorer .portfolio-library-heading dt { color: #a1b3c1; }
+.file-explorer .portfolio-browser-title small { color: #a1b3c1; }
+.file-explorer .file-sidebar nav button small { color: #a1b3c1; line-height: 1.55; }
+.file-explorer .file-sidebar nav button strong { font-size: 14px; }
+.file-explorer .file-search input { font-size: 14px; }
+.file-explorer .file-search input::placeholder { color: #a1b3c1; }
+.portfolio-filters { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 26px 22px; }
+.portfolio-filters button { display: inline-flex; align-items: center; gap: 9px; min-height: 40px; padding: 8px 12px; border: 1px solid #344451; border-radius: 7px; background: transparent; color: #b9c9d4; font-size: 12px; }
+.portfolio-filters button span { font-variant-numeric: tabular-nums; opacity: .8; }
+.portfolio-filters button:hover { background: #1a2b3b; color: #fff; }
+.portfolio-filters button[aria-pressed='true'] { background: #c4eaff; color: #11283d; border-color: transparent; }
+.file-explorer .portfolio-items-grid { gap: 24px 18px; padding: 0 26px 30px; }
+.file-explorer .portfolio-item { border-radius: 12px; background: #131c27; }
+.file-explorer .portfolio-item-media { height: 185px; }
+.file-explorer .portfolio-item-media img { filter: none; object-fit: cover; }
+.file-explorer .portfolio-item-copy { padding: 18px; }
+.file-explorer .portfolio-item-copy > strong { font-size: 19px; line-height: 1.35; letter-spacing: -.025em; color: #f0f5f9; }
+.file-explorer .portfolio-item-description { font-size: 14px; line-height: 1.75; color: #b4c3cf; }
+.file-explorer .portfolio-item-meta { color: #adc0ce; }
+.file-explorer .portfolio-item-meta small { color: inherit; font-size: 11px; }
+.file-explorer .portfolio-item-stack small { color: #c1d1de; font-size: 11px; }
+.file-explorer .portfolio-item > footer { min-height: 46px; padding: 0 18px; }
+.file-explorer .portfolio-item > footer > span { color: #b3c6d4; }
+.file-explorer .portfolio-item > footer button { min-height: 44px; color: #bcecff; font-size: 13px; }
+.file-explorer .portfolio-browser-status { color: #a6bac9; }
+.file-explorer .portfolio-items-list .portfolio-item-media { height: 130px; }
+.file-explorer .file-empty { gap: 10px; color: #b4c3cf; padding: 30px 18px; }
+.file-empty button { min-height: 44px; margin-top: 12px; padding: 10px 18px; border: 1px solid #6b879a; border-radius: 7px; color: #ecf7ff; background: #21374b; }
+.file-explorer button:focus-visible { outline: 2px solid #bcecff; outline-offset: -3px; }
+.file-explorer input { caret-color: #bcecff; }
+.file-explorer .file-surface { scrollbar-color: #51667a #0c121b; scrollbar-width: thin; }
+@container (max-width: 750px) {
+  .portfolio-browser-toolbar { grid-template-columns: 135px minmax(0, 1fr) auto; }
+  .portfolio-breadcrumb { display: none; }
+}
+@media (max-width: 760px) {
+  .mobile-identity h1 { line-height: 1.12; letter-spacing: -.035em; }
+  .mobile-identity .desktop-entry-actions { margin: 18px 0 22px; gap: 8px; }
+  .mobile-identity .desktop-entry-actions button { flex: 1; padding: 10px 12px; font-size: 13px; }
+  .file-explorer .portfolio-browser-toolbar { grid-template-columns: minmax(0,1fr) auto; }
+  .file-explorer .portfolio-library-heading { padding: 20px 16px 14px; min-height: 100px; }
+  .file-explorer .portfolio-library-heading h2 { font-size: 30px; }
+  .portfolio-filters { flex-wrap: nowrap; overflow-x: auto; padding: 0 16px 18px; }
+  .portfolio-filters button { flex-shrink: 0; min-height: 44px; }
+  .file-explorer .portfolio-items-grid { padding: 0 16px 24px; gap: 20px; }
+  .file-explorer .portfolio-item-media { height: auto; aspect-ratio: 16 / 10; }
+  .file-explorer .portfolio-items-list .portfolio-item-media { height: 105px; aspect-ratio: auto; }
+  .file-explorer .portfolio-items-list .portfolio-item-copy { padding: 12px; }
+  .file-explorer .portfolio-items-list .portfolio-item-copy > strong { font-size: 16px; }
+  .file-explorer .portfolio-view-toggle button { width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .desktop-entry-actions button { transition: none; }
+}
